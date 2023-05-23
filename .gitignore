@@ -1,1 +1,6 @@
 .DS_Store
+/src/*.lof
+/src/*.lot
+/src/*.tex
+/src/.auctex-auto
+/src/tex-headers
