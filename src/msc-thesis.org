@@ -1153,7 +1153,9 @@ from equation [Summarize: Assumptions needed for the (naive/simple) particle mas
 * Implemention of Stochastic Kernel Sampling
 \newpage
 * Summary of Results
+\newpage
 * Thesis Discussion & Outlook
+\newpage
 * Appendix
 ** Glossary
 ** Testing: Can I use /subfigures/ for "multicol" LaTeX plots in Emacs org-mode?
