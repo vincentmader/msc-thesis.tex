@@ -30,7 +30,7 @@ _What is the topic of this thesis?_
 \newpage
 * Introduction
 ** Proto-Planetary Disks & their Formation
-*** Composition of the Interstellar Medium
+*** Material Composition of the Interstellar Medium
 The interstellar medium consists mainly of low-mass particles,
 which can be categorized into
 1. atomic gas (mostly atomic hydrogen & helium),
@@ -61,7 +61,7 @@ which can be categorized into
 ~QUES~: Include pictures: observations.
 
 ~QUES~: Include pictures: diagrams/graphs of simplified disk.
-*** Composition of Proto-Planetary Disks
+*** Material Composition of Proto-Planetary Disks
 - It's made of the same material that made up the original cloud.
 - This is mostly gas, and a little bit of dust.
 
@@ -163,6 +163,8 @@ _Porosity_:
 *** QUES What other effects are there?
 ~TODO~: Talk about (relative) velocity components.
 \newpage
+*** Gas Kinematics inside PPDs
+*** Dust Kinematics inside PPDs
 ** Planet Formation inside Proto-Planetary Disks
 *** Particle-Particle Collisions
 
