@@ -28,7 +28,7 @@ _What is the topic of this thesis?_
   (and by =how much= the computational cost can be reduced)
   is the big goal of this thesis.
 \newpage
-* Introduction
+* General Introduction
 ** "As of yet unsorted Things to put into the Introduction"
 *** QUES What even is coagulation?
 
@@ -634,7 +634,7 @@ divided by the drag force acting on it.
 [[../figures/03/stopping_time.pdf]]
 \newpage
 
-* Formulation of a Discretized Model for Dust Coagulation
+* Introduction to Discretization of the Dust Coagulation Model
 ** Introduction, Overview, & Goals for this Section
 \newpage
 ** Discretization of the Mass Axis
@@ -780,7 +780,7 @@ the time axis in a logarithmic fashion. [write this differently?]
 [...]
 *** QUES How to integrate the Smoluchovski equation using implicit schemes?
 \newpage
-* Construction of a Simple Model for Hit-and-Stick Coagulation
+* Construction of the Kernel for Simple Hit-and-Stick Coagulation
 ** Introduction, Overview, & Goals for this Section
 - Here, we only take a look at the simple case of...
   + ...simple /linear/ mass axis discretization.
@@ -854,7 +854,7 @@ _Observation_:
 ** Visualization of Numerical Integration Results
 *** QUES Why does the mass error increase over time? -> "Mass Outflow"
 \newpage
-* Implementation of a Logarithmic Representation for the Mass Axis
+* Implementation of a Logarithmic Mass Axis Representation
 ** Introduction, Overview, & Goals for this Section
 \newpage
 ** Reasons for Making Use of a Logarithmic Representation
@@ -1011,7 +1011,7 @@ analytically, and write:
 \end{align*}
 [Elaborate on this, see "Dust Evolution with Binning Methods"]
 \newpage
-* Inclusion of Fragmentation Processes into the Model
+* Inclusion of Fragmentation Processes into the Kernel
 ** "First/Simple/Naive Attempt"
 *** QUES How to implement naive fragmentation?
 - "Pulverization"
@@ -1095,7 +1095,7 @@ _Answer_:
 \newpage
 ** "Implementation of Near-Zero-Cancellation Handling for Fragmentation" (?)
 \newpage
-* Implementation of a more Realistic Model for the Dust Particle Reaction Rates
+* Definition of a the Dust Particle Reaction Rates
 ** Definition of the Dust Particle Reaction Rates
 \newpage
 ** Definition of the Dust Particle Collision Rates
@@ -1141,7 +1141,7 @@ from equation [Summarize: Assumptions needed for the (naive/simple) particle mas
 ** Definition of the Relative Particle Velocity
 *** QUES How to implement realistic relative velocities between dust particles?
 \newpage
-* Implementation of a more Physical Model for the Relative Particle Velocities
+* Calculation of the Relative Dust Particle Velocities
 ** Definition of the Relative Velocity due to Radial Drift
 \newpage
 ** Definition of the Relative Velocity due to Differential Settling
@@ -1150,10 +1150,10 @@ from equation [Summarize: Assumptions needed for the (naive/simple) particle mas
 \newpage
 ** Definition of the Azimuthal Relative Velocity
 \newpage
-* "Recap of what we have so far"
-\newpage
 * Implemention of Stochastic Kernel Sampling
 \newpage
+* Summary of Results
+* Thesis Discussion & Outlook
 * Appendix
 ** Glossary
 ** Testing: Can I use /subfigures/ for "multicol" LaTeX plots in Emacs org-mode?
