@@ -158,6 +158,7 @@ Following from that, the integral
 
 gives the total dust mass per unit volume, i.e. the dust density.
 
+\newpage
 ** "Proto-Planetary Disks"
 *** QUES What is the interstellar medium composed of?
 The interstellar medium consists mainly of low-mass particles,
@@ -224,6 +225,7 @@ If not stated otherwise, a value of ... will we used throughout this thesis.
 
 ~QUES~: Talk about how to choose the "dust-to-gas" ratio, cite others.
 
+\newpage
 ** "Particle Kinematics inside the Disk"
 *** QUES How does the central star influence the disk around it?
 - The star exerts its gravitational influence onto the disk.
@@ -238,6 +240,7 @@ If not stated otherwise, a value of ... will we used throughout this thesis.
   + Therefore, the dust particles are "slowed down" and spiral inwards.
 *** QUES What other effects are there?
 ~TODO~: Talk about (relative) velocity components.
+\newpage
 ** "Particle Collisions"
 *** QUES Why do particles collide?
 
@@ -297,6 +300,8 @@ the output can be any number of particles.
 
 [...]
 
+\newpage
+\newpage
 ** The Smoluchovski Coagulation Equation
 *** QUES What is the Smoluchovski coagulation equation?
 
@@ -333,7 +338,9 @@ possible collision outcomes (bouncing, merging, fragmentation).
   + discretization of time axis
 - ...and about numerical integration of the Smoluchovski equation
   + for that, we need to talk about discretization of the time axis
+\newpage
 ** "Coagulation"
+\newpage
 ** Notes on the Structure of this Thesis
 *** QUES What is the structure of this thesis?
 - ...
@@ -412,8 +419,8 @@ possible collision outcomes (bouncing, merging, fragmentation).
 - Implement =stochastic sampling= of the kernel.
   1. ...
 
-     \newpage
-* Definition of a Disk Model
+\newpage
+* Definition of a simplified Radial Model for the Proto-Planetary Disk
 ** "Notes on what we plan to do in this section"
 *** QUES How to formulate a model for the PPD, its contents, & the planet formation processes?
 
@@ -461,12 +468,12 @@ What do we need to define?
   + Default: $$M_\text{star}=1\cdot M_\odot$$
 - Stellar luminosity
   + Default: $$L_\text{star}=1\cdot L_\odot$$
-* "First/Basic/Naive Implementation"
-** "Notes on what we plan to do in this section"
-- Here, we only take a look at the simple case of...
-  + ...simple /linear/ mass axis discretization.
-  + ...simple /Dirac-delta/ initialization.
-  + ...simple /explicit Euler/ integration.
+*** QUES How to model the gas?
+*** QUES How to model the dust?
+\newpage
+* Formulation of a Discretized Model for Dust Coagulation
+** Introduction, Overview, & Goals for this Section
+\newpage
 ** Discretization of the Mass Axis
 *** QUES Why do we even need to discretize at all?
 Due to the discrete nature of number representation on computers,
@@ -497,7 +504,8 @@ analogon has to be constructed.
   + ~TODO~: Decide: Is N_m the number of grid points, or the number of bins?
           Be consistent here!
 - ~TODO~: Define the grid spacing.
-** Discretization & Initialization of the Particle Mass Distribution Function
+\newpage
+** Discretization of the Particle Mass Distribution Function
 *** QUES How to discretize the dust particle mass distribution function?
 
 \begin{align*}
@@ -511,30 +519,7 @@ notation as well. We define:
   n_{i,\xi}:=n(m_i,t_\xi)
 \end{align*}
 
-*** QUES How to initialize the particle mass distribution function?
-
-Now, let us turn our attention to the initialization of the particle
-mass distribution function.
-
-_Options_:
-1. Dirac-delta distribution
-2. MRN distribution
-
-What would be best?
-- MRN is more physical than Dirac-delta. (see later chapter)
-- It does not /really/ make that much of a difference though.
-- The information about the initialization is quickly lost anyways.
-- Both 1. & 2. qualitatively lead to the same results (even if not quantitatively).
-
-_Observation_:
-- Using the MRN distribution leads to a significant slowdown of the integration.
-  (minutes, instead of seconds)
-- This might be because I chose $m_\text{max}$ to be the largest mass grid bin.
-  + Do not do this!
-  + This is unphysical!
-  + Instead use $\approx0.5\mum$
-- Test whether this problem persists!
-
+\newpage
 ** Discretization of the Smoluchovski Coagulation Equation
 *** QUES How to discretize the Smoluchovski equation?
 
@@ -554,43 +539,7 @@ Equivalent formulation: [which one to use? I like the lower one <3]
     K_{kij}\cdot n_i\cdot n_j
 \end{align*}
 
-** Definition of the Kernel for simple Stick-and-Hit Coagulation
-*** QUES How to implement stick-and-hit coagulation on a linear mass axis?
-
-Let us first turn our attention to the simple case of stick-and-hit coagulation:
-Here, two particles with masses $m_1$ and $m_2$ collide, and subsequently merge
-into a single particle with combined mass $m_\text{tot}=m_1+m_2$.
-
-Let $C(m_1,m_2)$ be the rate at which collisions occur between such a pair of particles.
-Then, let $$R(m_1,m_2$$ label the rate of collision events that lead to a merging of
-the two particles into a single new one.
-
-Of course, in actuality not every collision leads to a merge event. For simplicity,
-we will for now will assume that it does. As such, we can write
-
-\begin{align*}
-  R(m_1,m_2)=C(m_1,m_2)
-\end{align*}
-
-Later on, we will more carefully examine how the collision+sticking rate can be calculated.
-
-[...also talk about definition of collision rate...]
-[...also talk about "reaction rates"...]
-[...difference between "collision", "collision+merge", "reaction" rates (fragmentation?)...]
-
-[...collision+sticking rate, sticking probability, "Dust evolution w/ binning methods" eq.1.6-1.11...]
-
-[...move the above elsewhere? -> "collisions" section?]
-[...]
-
-A kernel describing the stick-and-hit coagulation process can be written as
-\begin{align*}
-  K(m,m_1,m_2)=\frac{1}{2}\bigg[\delta_D(m-m_1-m_2)-\delta_D(m-m_1)-\delta_D(m-m_2)\bigg]\cdot R(m_1,m_2)
-\end{align*}
-Here, $\delta_D$ labels the Dirac delta function.
-
-[...]
-
+\newpage
 ** Integration of the Smoluchovski Equation
 *** QUES How to discretize the time axis in a linear fashion?
 
@@ -659,10 +608,6 @@ If the step size is chosen too large, the method will break down due to the
 insufficient stability properties of the explicit Euler integration scheme.
 
 Instead, [...implicit Euler/Radau...] [see above]
-*** QUES Why does the mass error increase over time? -> "Mass Outflow"
-\newpage
-* "Other Methods of Integration"
-** "Logarithmic Time Axis"
 *** QUES How to discretize the time axis in a logarithmic fashion?
 
 As the temporal domain spans over multiple orders of magnitude for
@@ -670,12 +615,89 @@ the processes involved in planet formation, it makes sense to discretize
 the time axis in a logarithmic fashion. [write this differently?]
 
 [...]
+*** QUES How to integrate the Smoluchovski equation using implicit schemes?
+\newpage
+* Construction of a Simple Model for Hit-and-Stick Coagulation
+** Introduction, Overview, & Goals for this Section
+- Here, we only take a look at the simple case of...
+  + ...simple /linear/ mass axis discretization.
+  + ...simple /Dirac-delta/ initialization.
+  + ...simple /explicit Euler/ integration.
+\newpage
+** Definition of the Kernel for simple Stick-and-Hit Coagulation
+*** QUES How to implement stick-and-hit coagulation on a linear mass axis?
 
-** "Implicit Solvers"
+Let us first turn our attention to the simple case of stick-and-hit coagulation:
+Here, two particles with masses $m_1$ and $m_2$ collide, and subsequently merge
+into a single particle with combined mass $m_\text{tot}=m_1+m_2$.
+
+Let $C(m_1,m_2)$ be the rate at which collisions occur between such a pair of particles.
+Then, let $$R(m_1,m_2$$ label the rate of collision events that lead to a merging of
+the two particles into a single new one.
+
+Of course, in actuality not every collision leads to a merge event. For simplicity,
+we will for now will assume that it does. As such, we can write
+
+\begin{align*}
+  R(m_1,m_2)=C(m_1,m_2)
+\end{align*}
+
+Later on, we will more carefully examine how the collision+sticking rate can be calculated.
+
+[...also talk about definition of collision rate...]
+[...also talk about "reaction rates"...]
+[...difference between "collision", "collision+merge", "reaction" rates (fragmentation?)...]
+
+[...collision+sticking rate, sticking probability, "Dust evolution w/ binning methods" eq.1.6-1.11...]
+
+[...move the above elsewhere? -> "collisions" section?]
+[...]
+
+A kernel describing the stick-and-hit coagulation process can be written as
+\begin{align*}
+  K(m,m_1,m_2)=\frac{1}{2}\bigg[\delta_D(m-m_1-m_2)-\delta_D(m-m_1)-\delta_D(m-m_2)\bigg]\cdot R(m_1,m_2)
+\end{align*}
+Here, $\delta_D$ labels the Dirac delta function.
+
+[...]
+
+\newpage
+** Initialization of the Particle Mass Distribution Function
+*** QUES How to initialize the particle mass distribution function?
+
+Now, let us turn our attention to the initialization of the particle
+mass distribution function.
+
+_Options_:
+1. Dirac-delta distribution
+2. MRN distribution
+
+What would be best?
+- MRN is more physical than Dirac-delta. (see later chapter)
+- It does not /really/ make that much of a difference though.
+- The information about the initialization is quickly lost anyways.
+- Both 1. & 2. qualitatively lead to the same results (even if not quantitatively).
+
+_Observation_:
+- Using the MRN distribution leads to a significant slowdown of the integration.
+  (minutes, instead of seconds)
+- This might be because I chose $m_\text{max}$ to be the largest mass grid bin.
+  + Do not do this!
+  + This is unphysical!
+  + Instead use $\approx0.5\mum$
+- Test whether this problem persists!
+
+\newpage
+** Integration & Visualization of Results
+*** QUES Why does the mass error increase over time? -> "Mass Outflow"
 \newpage
 * Implementation of a Logarithmic Representation for the Mass Axis
+** Introduction, Overview, & Goals for this Section
+\newpage
 ** Reasons for Making Use of a Logarithmic Representation
+\newpage
 ** Challenges Associated with a Logarithmic Representation
+\newpage
 ** Definition of the Logarithmic Mass Axis
 *** QUES How to discretize the mass axis in a logarithmic fashion?
 \newpage
@@ -706,6 +728,9 @@ by [Kovetz & Olund, 1969], where they used the following procedure:
    the /gain/ of particles in bin $k$ due to the collision of particles from the
    bins $i$ and $j$. The second is the /loss/ of particles from bin $k$ due to
    collisions of particles in bin $k$ with particles from any other bin $j$.
+
+   Using this separation into gain & loss, the dust particle mass distribution's
+   temporal derivative can be expressed in the following form:
    \begin{align*}
      \deriv{n_k}{t}=\sum_{i,j}K_{kij}^\text{gain}n_in_j-\sum_jK_{kj}^\text{loss}n_kn_j
    \end{align*}
@@ -739,8 +764,8 @@ by [Kovetz & Olund, 1969], where they used the following procedure:
      +m_{\bar k+1}K_{\bar k+1,ij}^\text{gain}
      \overset{!}{=}(m_i+m_j)K_{ij}^\text{loss}
    \end{align*}
-5. Now, for the splitting of the resulting particle's mass onto two bins, let
-   us define the parameter $\varepsilon$ such that
+5. Now, for the mapping of the resulting particle's mass onto two neighboring
+   bins, let us define a parameter $\varepsilon$ such that
    \begin{align*}
      K_{\bar k,ij}^\text{gain}
      &=K_{ij}^\text{loss}\cdot(1-\varepsilon),\ \text{and}\\
@@ -756,6 +781,7 @@ by [Kovetz & Olund, 1969], where they used the following procedure:
 This is the algorithm of [Kovetz & Olund (1969)], and it was also used in subsequent
 papers like [Brauer et al. (2008)] and [Birnstiel et al. (2010)].
 # This discretization of the kernel is in detailed balance: For every two particles merging, these two particles are removed from the distribution, and precisely one par- ticle, with the proper mass, is inserted into the distribution. This detailed balance is not just guaranteed for the analytic continuous equation, but also for its numerical dis- cretization. This is important, because even the slightest deviation from this balance can cause large errors in the long-term.
+\newpage
 ** Implementation of Near-Zero-Cancellation Handling for Coagulation
 *** QUES What is Near-Zero-Cancellation and where can it occur in general?
 When using floating-point numbers following the representation defined
@@ -792,13 +818,13 @@ Let us now take a look at the particle mass distribution in the bin $\bar k$
 and, more specifically, by how much it changes from one timestep to the
 next. For this particular pair of $i$ and $\bar k=j$, we can write:
 \begin{align*}
-  \deriv{N_{\bar k}}{t}
+  \deriv{n_{\bar k}}{t}
   =K_{\bar k,i\bar k}^{\text{gain}}n_in_{\bar k}
   -K_{\bar ki}^{\text{loss}}n_in_{\bar k}
 \end{align*}
 Plugging in [equation from above] leads to
 \begin{align*}
-  \deriv{N_{\bar k}}{t}
+  \deriv{n_{\bar k}}{t}
   =(1-\varepsilon)K_{\bar ki}^{\text{loss}}n_in_{\bar k}
   -K_{\bar ki}^{\text{loss}}n_in_{\bar k}
 \end{align*}
@@ -817,7 +843,7 @@ may then occur when the resulting $k$ is equal to $j$.
 In that case, we carry out the subtraction in [previous equation]
 analytically, and write:
 \begin{align*}
-  \deriv{N_{\bar k}}{t}
+  \deriv{n_{\bar k}}{t}
   =-\varepsilon K_{\bar ki}^{\text{loss}}n_in_{\bar k}
 \end{align*}
 [Elaborate on this, see "Dust Evolution with Binning Methods"]
@@ -826,8 +852,10 @@ analytically, and write:
 ** "First/Simple/Naive Attempt"
 *** QUES How to implement naive fragmentation?
 - "Pulverization"
+\newpage
 ** The MRN Distribution
 - introduced by Mathis-Rumpl-Nordsieck, 1977
+\newpage
 ** "Redistribution of Mass onto the Bins using MRN Distribution"
 *** QUES How to implement MRN distribution (for initialization)?
 
@@ -901,11 +929,12 @@ _Answer_:
 - One could specify the method in `config.toml`, or just use one of the methods.
 
 *** QUES Test integration speed with MRN distribution enabled. Is there a slowdown?
-SCHEDULED: <2023-05-03 Wed>
+\newpage
 ** "Implementation of Near-Zero-Cancellation Handling for Fragmentation" (?)
 \newpage
-* Implementation of a more Physical Model for the Dust in the PPD
+* Implementation of a more Realistic Model for the Dust Particle Reaction Rates
 ** Definition of the Dust Particle Reaction Rates
+\newpage
 ** Definition of the Dust Particle Collision Rates
 *** QUES How to define the particle collision rate?
 
@@ -929,6 +958,7 @@ In our notation:
   C_{ij}=\sigma_{ij}\cdot\langle\Delta v_{ij}\rangle
 \end{align*}
 
+\newpage
 ** Definition of the Collision Cross Section
 *** QUES How to implement realistic collision cross sections?
 
@@ -944,15 +974,17 @@ from equation [Summarize: Assumptions needed for the (naive/simple) particle mas
 
 [Add plot here]
 
+\newpage
 ** Definition of the Relative Particle Velocity
 *** QUES How to implement realistic relative velocities between dust particles?
 \newpage
-* "Implementation of a more Physical Model for the Gas in the PPD" (?)
-\newpage
 * Implementation of a more Physical Model for the Relative Particle Velocities
 ** Definition of the Relative Velocity due to Radial Drift
+\newpage
 ** Definition of the Relative Velocity due to Differential Settling
+\newpage
 ** Definition of the Relative Velocity due to Turbulence
+\newpage
 ** Definition of the Azimuthal Relative Velocity
 \newpage
 * "Recap of what we have so far"
@@ -960,6 +992,7 @@ from equation [Summarize: Assumptions needed for the (naive/simple) particle mas
 * Implemention of Stochastic Kernel Sampling
 \newpage
 * Appendix
+** Glossary
 ** Testing: Can I use /subfigures/ for "multicol" LaTeX plots in Emacs org-mode?
 - Yes!
   See below:
@@ -1856,16 +1889,4 @@ Assuming simple hit-and-stick coagulation, the kernel can be written as
 Here, the coefficient $R(m_1,m_2)$ labels the collision-and-merging rate.
 
 ** Testing Mass Conservation
-* QUESTIONS
-** QUES Hat es einen bestimmten Grund, dass Du in "Dust Evolution with Binning Methods" immer partielle statt totale zeitliche Ableitungen der Teilchen-Massen-Distributions-Funktion verwendest?
-** QUES Wie /genau/ bastel ich mir meine Bins?
-Genauer?
-- Wo sollte ich die =Grid Cell Centers=,
-  und wo die =Grid Cell Boundaries= benutzen?
-
-Zwischen den beiden habe ich vermutlich bis jetzt
-noch nicht konsequent genug differenziert.
-
-Vermutlich:
-- Die Centers ueberall dort, wo ein $m_k$ vorkommt.
-- Die Boundaries ausschliesslich zur Berechnung von $\Delta m_k$.
+* References
