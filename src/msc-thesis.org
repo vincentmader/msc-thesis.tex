@@ -29,20 +29,73 @@ _What is the topic of this thesis?_
   is the big goal of this thesis.
 \newpage
 * General Introduction
-** "As of yet unsorted Things to put into the Introduction"
-*** QUES What even is coagulation?
+** Proto-Planetary Disks & their Formation
+*** Composition of the Interstellar Medium
+The interstellar medium consists mainly of low-mass particles,
+which can be categorized into
+1. atomic gas (mostly atomic hydrogen & helium),
+   and (to a lesser extent)
+2. larger dust particles
+   (characterized mainly by their mass & porosity) [citations needed]
+*** Collapse of Interstellar Gas Clouds into a Disk
+- Why does it even happen?
+  + A cloud of gas/dust collapses under its own gravity.
+- What happens?
+  + The cloud flattens out into a disk.
+- Why does the cloud flatten out?
+  + Angular momentum is conserved.
+  + There is a most likely a non-zero /total/ angular momentum.
+    When an object is hit, and it's not hit /exactly/ in the center, it starts to spin.
+  + Gravity pulls the particles inwards,
+    but rotation (centrifugal/centripetal forces) opposes gravity.
+  + Thus, a disk is formed.
+*** Star Formation at the Disk Center
+- gravity $\to$ high pressure $\to$ nuclear fusion
+*** Spatial Structure of Proto-Planetary Disks
 
-Coagulation is
-- the process of particles sticking together and forming larger bodies
-- the most-likely origin of planetary cores [citation needed]
-- a complex process
-  + coagulation + fragmentation
-  + ...
+~QUES~: Talk about
+- approximately (first-order) circular shape of a PPD,
+- disk flaring, midplane, ...
+- ...
 
-How can you model coagulation?
-- Smoluchovski equation
-- ... [other ansatz?]
+~QUES~: Include pictures: observations.
 
+~QUES~: Include pictures: diagrams/graphs of simplified disk.
+*** Composition of Proto-Planetary Disks
+- It's made of the same material that made up the original cloud.
+- This is mostly gas, and a little bit of dust.
+
+Most of the mass inside PPDs is concentrated inside the star at its center. [citation needed]
+- We can take a (kind of random) look at our own solar system,
+  where [how much? I believe about 99] percent of the mass is concentrated inside the Sun.
+
+~QUES~: Find data/sources about mass distribution inside PPDs.
+
+The model used in this thesis will be based on the assumption that this is the case.
+Let $M_*$ label the stellar mass, and $M_\text{disk}$ label the disk mass.
+
+Then, we can define a "disk-to-star" mass ratio, which we label $q_\text{dts}$.
+If not otherwise stated, the value of this ratio will be assumed to be...
+
+~QUES~: Choose value of "disk-to-star" mass ratio.
+
+Let us now turn our attention to the mass not concentrated inside the star,
+but spread across the protoplanetary disk. It is comprised mostly [citation needed]
+of atomic/molecular gas (mostly hydrogen & helium) [citation needed]
+and larger (but still very small [how small?]) dust particles [citation needed].
+
+~QUES~: Talk about element composition of interstellar medium,
+      and how that translates into the composition of the disk.
+~QUES~: Talk about approximate scale of dust particles.
+
+Analogously to before, we can define a "dust-to-gas" mass ratio, which we label $q_\text{dtg}$.
+
+If not stated otherwise, a value of ... will we used throughout this thesis.
+
+~QUES~: Talk about how to choose the "dust-to-gas" ratio, cite others.
+
+\newpage
+** Gas & Dust Particles inside PPDs
 *** QUES How to model the gas inside the disk?
 
 What are the most relevant properties of the gas?
@@ -96,137 +149,6 @@ _Porosity_:
   + Only list attributes & their labels/symbols here.
   + Make model assumptions elsewhere?
 
-*** QUES What is a particle distribution function?
-
-- Consider a distribution of particles.
-- Let the particles have various different properties,
-  e.g. position, velocity, and mass.
-- Assume these properties to /not/ be distributed homogenously among the particles.
-- The distribution can then be described by a fitting /particle distribution function/
-  $$f(...)=...$$
-
-~QUES~: Continue writing this section.
-- What is a particle distribution function /generally/?
-
-*** QUES What is the dust particle distribution function?
-
-~QUES~: Apply the definition of a general particle distribution function (from above)
-      to the (special) case of a protoplanetary disk.
-- We assumed the relevant properties to be
-  + radial position in the disk (radial distance from star)
-  + height above the midplane
-  + particles mass
-- These properties (in general) depend on time.
-
-Therefore, we can write the distribution function for dust particles inside the modeled PPD as
-
-\begin{align*}
-  f(r,z,m,t)
-\end{align*}
-
-- NOTE:
-  + After this section, focus (for now) on naive/simple particle /mass distribution function/.
-
-*** QUES Assumptions needed for the (naive/simple) particle mass distribution.
-
-Consider a distribution of dust particles with different masses $m$.
-- Let them all have the same material density $\rho_s$ (and other properties).
-- Also, (for now) assume that their shape is always spherical.
-
-Then, each dust particle is characterized solely by its mass, and hence its radius $a$:
-
-\begin{align*}
-  m=\frac{4\pi}{3}\rho_s a^3
-\end{align*}
-
-*** QUES What is the dust particle mass distribution function?
-
-The particle mass distribution function $n(m)$
-is defined in such a way that the integral
-
-\begin{align*}
-  N=\int_0^\infty n(m)\ \dd m
-\end{align*}
-
-is the total number of dust particles per unit volume.
-
-Following from that, the integral
-
-\begin{align*}
-  \rho=\int_0^\infty m\cdot n(m)\ \dd m
-\end{align*}
-
-gives the total dust mass per unit volume, i.e. the dust density.
-
-\newpage
-** "Proto-Planetary Disks"
-*** QUES What is the interstellar medium composed of?
-The interstellar medium consists mainly of low-mass particles,
-which can be categorized into
-1. atomic gas (mostly atomic hydrogen & helium),
-   and (to a lesser extent)
-2. larger dust particles
-   (characterized mainly by their mass & porosity) [citations needed]
-*** QUES How do protoplanetary disks form?
-- Why does it even happen?
-  + A cloud of gas/dust collapses under its own gravity.
-- What happens?
-  + The cloud flattens out into a disk.
-- Why does the cloud flatten out?
-  + Angular momentum is conserved.
-  + There is a most likely a non-zero /total/ angular momentum.
-    When an object is hit, and it's not hit /exactly/ in the center, it starts to spin.
-  + Gravity pulls the particles inwards,
-    but rotation (centrifugal/centripetal forces) opposes gravity.
-  + Thus, a disk is formed.
-*** QUES Why does a star form at the center of the disk?
-- gravity $\to$ high pressure $\to$ nuclear fusion
-*** QUES What does a protoplanetary disk look like?
-
-~QUES~: Talk about
-- approximately (first-order) circular shape of a PPD,
-- disk flaring, midplane, ...
-- ...
-
-~QUES~: Include pictures: observations.
-
-~QUES~: Include pictures: diagrams/graphs of simplified disk.
-*** QUES What is a protoplanetary disk made up of?
-- It's made of the same material that made up the original cloud.
-- This is mostly gas, and a little bit of dust.
-*** QUES How is mass distributed inside the disk?
-
-Most of the mass inside PPDs is concentrated inside the star at its center. [citation needed]
-- We can take a (kind of random) look at our own solar system,
-  where [how much? I believe about 99] percent of the mass is concentrated inside the Sun.
-
-~QUES~: Find data/sources about mass distribution inside PPDs.
-
-The model used in this thesis will be based on the assumption that this is the case.
-Let $M_*$ label the stellar mass, and $M_\text{disk}$ label the disk mass.
-
-Then, we can define a "disk-to-star" mass ratio, which we label $q_\text{dts}$.
-If not otherwise stated, the value of this ratio will be assumed to be...
-
-~QUES~: Choose value of "disk-to-star" mass ratio.
-
-Let us now turn our attention to the mass not concentrated inside the star,
-but spread across the protoplanetary disk. It is comprised mostly [citation needed]
-of atomic/molecular gas (mostly hydrogen & helium) [citation needed]
-and larger (but still very small [how small?]) dust particles [citation needed].
-
-~QUES~: Talk about element composition of interstellar medium,
-      and how that translates into the composition of the disk.
-~QUES~: Talk about approximate scale of dust particles.
-
-Analogously to before, we can define a "dust-to-gas" mass ratio, which we label $q_\text{dtg}$.
-
-If not stated otherwise, a value of ... will we used throughout this thesis.
-
-~QUES~: Talk about how to choose the "dust-to-gas" ratio, cite others.
-
-\newpage
-** "Particle Kinematics inside the Disk"
 *** QUES How does the central star influence the disk around it?
 - The star exerts its gravitational influence onto the disk.
   + As a first order approxmiation, the matter in the disk moves
@@ -241,8 +163,8 @@ If not stated otherwise, a value of ... will we used throughout this thesis.
 *** QUES What other effects are there?
 ~TODO~: Talk about (relative) velocity components.
 \newpage
-** "Particle Collisions"
-*** QUES Why do particles collide?
+** Planet Formation inside Proto-Planetary Disks
+*** Particle-Particle Collisions
 
 In a PPD, dust particles move around at
 - partly systematic, and
@@ -262,163 +184,21 @@ This causes the dust particles to occasionally collide with each other.
 [...coagulation...]
 [...fragmentation...]
 
-*** QUES What happens when particles collide? (from standpoint of particle mass distr.)
+*** Particle Coagulation
 
-Collisions can be regarded as two-body collisions:
-- The occurrence of three-body interactions is so tiny
-  that it can be neglected entirely (negligible).
+Coagulation is
+- the process of particles sticking together and forming larger bodies
+- the most-likely origin of planetary cores [citation needed]
+- a complex process
+  + coagulation + fragmentation
+  + ...
 
-_Outcomes_:
-1. bouncing
-2. merging
-3. fragmentation
+How can you model coagulation?
+- Smoluchovski equation
+- ... [other ansatz?]
 
-_Bouncing_:
-- Here: The only property we trace is the particle mass.
-- Therefore, "nothing happens".
-
-_Merging_:
-- The two original particles with masses $m_1$ and $m_2$ "disappear".
-- A single new particle with mass $m_\text{tot}=m_1+m_2$ "appears".
-
-_Fragmentation_:
-- The two original particles with masses $m_1$ and $m_2$ also "disappear".
-- But: A whole series/range of particles can appear,
-  with a total mass of $m_\text{tot}=m_1+m_2$
-
-The input to a collision event are therefore always two bodies, but
-the output can be any number of particles.
-
-*** QUES How do collisions lead to the formation of planetary cores?
-*** QUES How can particle collisions be modeled?
-
-["ensemble approach"]
-
-[...]
-
-- Particle collisions can be modeled using the Smoluchovski equation.
-
-[...]
-
-\newpage
-\newpage
-** The Smoluchovski Coagulation Equation
-*** QUES What is the Smoluchovski coagulation equation?
-
-The general time evolution of the particle mass distribution function
-due to collision can (by virtue of the two-body nature) be expressed
-using the Smoluchovski coagulation equation.
-
-... background ... [1916 Smoluchovski]
-
-The coagulation equation reads
-
-\begin{align*}
-  \deriv{n}{t}(m,t)=\int_0^\infty\int_0^\infty K(m,m',m'')\cdot n(m',t)\cdot n(m'',t)\ \dd m'\ \dd m''
-\end{align*}
-
-Here, $K(m,m',m'')$ labels the "so-called" /coagulation kernel/.
-
-This general form of the (temporal) evolution equation of
-the particle mass distribution function encompasses all
-possible collision outcomes (bouncing, merging, fragmentation).
-
-*** QUES What is the coagulation kernel?
-- NOTE:
-  + Stay very general/"vague" here.
-  + Details will follow in sections on stick-and-hit / fragmentation.
-
-- First problem to look at:
-  + simple case of Stick-and-Hit coagulation
-
-- But before we do that, we need to talk about discretization...
-  + discretization of mass axis
-  + discretization of dust particle (mass) distribution function
-  + discretization of kernel
-  + discretization of time axis
-- ...and about numerical integration of the Smoluchovski equation
-  + for that, we need to talk about discretization of the time axis
-\newpage
-** "Coagulation"
-\newpage
+*** Formation of Planetary Cores
 ** Notes on the Structure of this Thesis
-*** QUES What is the structure of this thesis?
-- ...
-**** Introduction
-**** Attempt A
-***** "Stick-and-Hit Coagulation"
-***** "Initialization of the Dust Particle Mass Distribution Function"
-***** "Implementation of Physical Reaction Rates"
-****** "Implementation of Physical Collision Rates"
-******* "Implementation of Physical Collision Cross Section"
-******* "Implementation of Physical Relative Velocities"
-****** "..."
-**** Attempt B
-- Give context/introduction.
-  1. What is the goal?
-  2. (?) How do planets form?
-  3. How do PPDs form?
-  4. What makes up a disk?
-  5. What does a disk "look" like?
-     - radially
-  6. .........
-
-- Implement a first hands-on approach of what we're even talking about:
-  1. How do we =discretize= the particle mass distribution function?
-     - Here: Do it on a =linear= grid.
-  2. How do we discretize the Smoluchovski equation?
-  3. How do we define a (simple/naive) coagulation kernel?
-     - Here: Include only =stick-and-hit= coagulation.
-     - Here: Set reaction rates to 1.
-  4. How do we define the initial particle mass distribution?
-     - Here: Use Dirac-delta distribution.
-  5. How to we =integrate= the Smoluchovski equation?
-     - Here: Do it =explicitly=.
-
-- Move to a =logarithmic= representation.
-  1. How do you define a logarithmic (discrete) mass axis?
-     - Why even do this? -> Talk about involved scales.
-     - What are the problems here?
-       + Talk about resulting masses not lying on grid points.
-       + Talk about near-zero cancellation.
-  2. How do we fix the grid-point problem?
-     - Implement =Kovetz-Olund= algortihm.
-  3. How do we fix the cancellation problem?
-     - Implement =cancellation handling=.
-
-- Move away from explicit integration, use =implicit integration=.
-  1. Implement =logarithmic time axis=.
-  2. ...
-
-- Include =fragmentation= into the model.
-  1. What is a first attempt at doing this?
-     - Move mass into the smallest-mass bin.
-  2. How can one do this more accurately?
-     - Implement MRN distribution.
-  3. (?) Implement cancellation handling.
-
-- (?) Implement initial distribution using MRN
-  1. ...
-
-- Implement =physical reaction rates=.
-  1. What are the reaction rates made up of?
-     - ...
-  2. What are the collision rates made up of?
-     - Define collision rate from cross section & rel. velocity.
-  3. How is the collision cross section defined?
-     - Define cross section.
-  4. How are the relative velocities defined?
-     - Define total rel. velocity.
-
-- (?) Implement =physical gas model= (radial).           <- Do this here?
-  1. ...
-
-- Implement =physical relative velocites=.
-  1. ... (RD, AZ, DS, TU)
-
-- Implement =stochastic sampling= of the kernel.
-  1. ...
-
 \newpage
 * Definition of a simplified Radial Model for the Proto-Planetary Disk
 ** Introduction, Overview, & Goals for this Section
@@ -634,6 +414,150 @@ divided by the drag force acting on it.
 [[../figures/03/stopping_time.pdf]]
 \newpage
 
+* Definition of a simplified Model for Dust Coagulation
+** Ensemble Approach
+*** QUES How can particle collisions be modeled?
+
+["ensemble approach"]
+
+[...]
+
+- Particle collisions can be modeled using the Smoluchovski equation.
+
+[...]
+
+\newpage
+\newpage
+*** QUES What is a particle distribution function?
+
+- Consider a distribution of particles.
+- Let the particles have various different properties,
+  e.g. position, velocity, and mass.
+- Assume these properties to /not/ be distributed homogenously among the particles.
+- The distribution can then be described by a fitting /particle distribution function/
+  $$f(...)=...$$
+
+~QUES~: Continue writing this section.
+- What is a particle distribution function /generally/?
+
+*** QUES What is the dust particle distribution function?
+
+~QUES~: Apply the definition of a general particle distribution function (from above)
+      to the (special) case of a protoplanetary disk.
+- We assumed the relevant properties to be
+  + radial position in the disk (radial distance from star)
+  + height above the midplane
+  + particles mass
+- These properties (in general) depend on time.
+
+Therefore, we can write the distribution function for dust particles inside the modeled PPD as
+
+\begin{align*}
+  f(r,z,m,t)
+\end{align*}
+
+- NOTE:
+  + After this section, focus (for now) on naive/simple particle /mass distribution function/.
+
+*** QUES Assumptions needed for the (naive/simple) particle mass distribution.
+
+Consider a distribution of dust particles with different masses $m$.
+- Let them all have the same material density $\rho_s$ (and other properties).
+- Also, (for now) assume that their shape is always spherical.
+
+Then, each dust particle is characterized solely by its mass, and hence its radius $a$:
+
+\begin{align*}
+  m=\frac{4\pi}{3}\rho_s a^3
+\end{align*}
+
+*** QUES What is the dust particle mass distribution function?
+
+The particle mass distribution function $n(m)$
+is defined in such a way that the integral
+
+\begin{align*}
+  N=\int_0^\infty n(m)\ \dd m
+\end{align*}
+
+is the total number of dust particles per unit volume.
+
+Following from that, the integral
+
+\begin{align*}
+  \rho=\int_0^\infty m\cdot n(m)\ \dd m
+\end{align*}
+
+gives the total dust mass per unit volume, i.e. the dust density.
+
+\newpage
+*** QUES What happens when particles collide? (from standpoint of particle mass distr.)
+
+Collisions can be regarded as two-body collisions:
+- The occurrence of three-body interactions is so tiny
+  that it can be neglected entirely (negligible).
+
+_Outcomes_:
+1. bouncing
+2. merging
+3. fragmentation
+
+_Bouncing_:
+- Here: The only property we trace is the particle mass.
+- Therefore, "nothing happens".
+
+_Merging_:
+- The two original particles with masses $m_1$ and $m_2$ "disappear".
+- A single new particle with mass $m_\text{tot}=m_1+m_2$ "appears".
+
+_Fragmentation_:
+- The two original particles with masses $m_1$ and $m_2$ also "disappear".
+- But: A whole series/range of particles can appear,
+  with a total mass of $m_\text{tot}=m_1+m_2$
+
+The input to a collision event are therefore always two bodies, but
+the output can be any number of particles.
+
+** The Smoluchovski Coagulation Equation
+*** QUES What is the Smoluchovski coagulation equation?
+
+The general time evolution of the particle mass distribution function
+due to collision can (by virtue of the two-body nature) be expressed
+using the Smoluchovski coagulation equation.
+
+... background ... [1916 Smoluchovski]
+
+The coagulation equation reads
+
+\begin{align*}
+  \deriv{n}{t}(m,t)=\int_0^\infty\int_0^\infty K(m,m',m'')\cdot n(m',t)\cdot n(m'',t)\ \dd m'\ \dd m''
+\end{align*}
+
+Here, $K(m,m',m'')$ labels the "so-called" /coagulation kernel/.
+
+This general form of the (temporal) evolution equation of
+the particle mass distribution function encompasses all
+possible collision outcomes (bouncing, merging, fragmentation).
+
+The Smoluchowski coagulation equation is a (nonlinear?) integro-differential equation.
+It is used to model the evolution of system in which particles undergo aggregation.
+
+*** QUES What is the coagulation kernel?
+- NOTE:
+  + Stay very general/"vague" here.
+  + Details will follow in sections on stick-and-hit / fragmentation.
+
+- First problem to look at:
+  + simple case of Stick-and-Hit coagulation
+
+- But before we do that, we need to talk about discretization...
+  + discretization of mass axis
+  + discretization of dust particle (mass) distribution function
+  + discretization of kernel
+  + discretization of time axis
+- ...and about numerical integration of the Smoluchovski equation
+  + for that, we need to talk about discretization of the time axis
+\newpage
 * Introduction to Discretization of the Dust Coagulation Model
 ** Introduction, Overview, & Goals for this Section
 \newpage
@@ -1895,5 +1819,81 @@ Assuming simple hit-and-stick coagulation, the kernel can be written as
 \end{equation*}
 Here, the coefficient $R(m_1,m_2)$ labels the collision-and-merging rate.
 
+*** QUES What is the structure of this thesis?
+**** Attempt A
+***** "Stick-and-Hit Coagulation"
+***** "Initialization of the Dust Particle Mass Distribution Function"
+***** "Implementation of Physical Reaction Rates"
+****** "Implementation of Physical Collision Rates"
+******* "Implementation of Physical Collision Cross Section"
+******* "Implementation of Physical Relative Velocities"
+****** "..."
+**** Attempt B
+- Give context/introduction.
+  1. What is the goal?
+  2. (?) How do planets form?
+  3. How do PPDs form?
+  4. What makes up a disk?
+  5. What does a disk "look" like?
+     - radially
+  6. .........
+
+- Implement a first hands-on approach of what we're even talking about:
+  1. How do we =discretize= the particle mass distribution function?
+     - Here: Do it on a =linear= grid.
+  2. How do we discretize the Smoluchovski equation?
+  3. How do we define a (simple/naive) coagulation kernel?
+     - Here: Include only =stick-and-hit= coagulation.
+     - Here: Set reaction rates to 1.
+  4. How do we define the initial particle mass distribution?
+     - Here: Use Dirac-delta distribution.
+  5. How to we =integrate= the Smoluchovski equation?
+     - Here: Do it =explicitly=.
+
+- Move to a =logarithmic= representation.
+  1. How do you define a logarithmic (discrete) mass axis?
+     - Why even do this? -> Talk about involved scales.
+     - What are the problems here?
+       + Talk about resulting masses not lying on grid points.
+       + Talk about near-zero cancellation.
+  2. How do we fix the grid-point problem?
+     - Implement =Kovetz-Olund= algortihm.
+  3. How do we fix the cancellation problem?
+     - Implement =cancellation handling=.
+
+- Move away from explicit integration, use =implicit integration=.
+  1. Implement =logarithmic time axis=.
+  2. ...
+
+- Include =fragmentation= into the model.
+  1. What is a first attempt at doing this?
+     - Move mass into the smallest-mass bin.
+  2. How can one do this more accurately?
+     - Implement MRN distribution.
+  3. (?) Implement cancellation handling.
+
+- (?) Implement initial distribution using MRN
+  1. ...
+
+- Implement =physical reaction rates=.
+  1. What are the reaction rates made up of?
+     - ...
+  2. What are the collision rates made up of?
+     - Define collision rate from cross section & rel. velocity.
+  3. How is the collision cross section defined?
+     - Define cross section.
+  4. How are the relative velocities defined?
+     - Define total rel. velocity.
+
+- (?) Implement =physical gas model= (radial).           <- Do this here?
+  1. ...
+
+- Implement =physical relative velocites=.
+  1. ... (RD, AZ, DS, TU)
+
+- Implement =stochastic sampling= of the kernel.
+  1. ...
+
+\newpage
 ** Testing Mass Conservation
 * References
