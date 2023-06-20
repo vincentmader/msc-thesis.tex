@@ -313,7 +313,7 @@ respectively. Now, consider a collection of $\mathcal N_m+1$ appropriately space
 $m_i^\text{b}$, which will serve as the bin boundaries.
 
 \begin{figure}[h!]
-    \caption{Discretized mass axis.}
+    \caption{Illustration of the discretized mass axis.}
     \begin{center}
         \begin{tikzpicture}
             \def\N{4}      % This is the number of cells drawn (to the left of "..." separator).
