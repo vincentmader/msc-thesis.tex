@@ -299,6 +299,7 @@ for numerical treatment to move away from a continuous representation. Instead, 
 analogon has to be constructed for the mass grid, the evolution equations, as well as the
 coagulation kernel.
 ** Discretization of the Mass Axis
+*** +Introduction/General Idea+
 We will start with the discretization of the mass axis: Here, the goal is to partition the
 continuous range of masses present in the disk into a set of $\mathcal N_m\in\mathbb N$
 intervals, which from now on will be referred to as mass grid "bins". Each of these bins can
@@ -404,6 +405,42 @@ though, it is given by
 \begin{align*}
   \Delta m=m_{i+1}^\text{b}-m_i^\text{b}=\frac{m_\text{max}-m_\text{min}}{\mathcal N_m}
 \end{align*}
+\newpage
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}
+    \caption{CAPTION ...}
+\end{figure}
+
+\newpage
 
 *** Discretization of the Mass Axis using a Logarithmic Scale
 As before, let $\mathcal N_m$ be used to label the number of bins, and let the upper and lower grid
@@ -468,43 +505,8 @@ for $i$. This leads to
     \caption{CAPTION ...}
 \end{figure}
 
-
 \newpage
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{
-            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
-        }
-        \subcaption{CAPTION ...}
-    \end{minipage}%
-    \begin{minipage}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{
-            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
-        }
-        \subcaption{CAPTION ...}
-    \end{minipage}
-    \begin{minipage}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{
-            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
-        }
-        \subcaption{CAPTION ...}
-    \end{minipage}%
-    \begin{minipage}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{
-            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
-        }
-        \subcaption{CAPTION ...}
-    \end{minipage}
-    \caption{CAPTION ...}
-\end{figure}
-
-\newpage
 ** Discretization of the Particle Mass Distribution Function
 *** QUES How to discretize the dust particle mass distribution function?
 
