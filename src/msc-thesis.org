@@ -298,39 +298,18 @@ Due to the discrete nature of number representation on digital computers, it is 
 for numerical treatment to move away from a continuous representation. Instead, a discrete
 analogon has to be constructed for the mass grid, the evolution equations, as well as the
 coagulation kernel.
-** Discretization of the Mass Axis using a Linear Scale
+** Discretization of the Mass Axis
 We will start with the discretization of the mass axis: Here, the goal is to partition the
-continuous range of masses present in the disk into a set of $\mathcal N_m\in\mathbb N$ intervals, which
-from now on will be referred to as mass grid "bins". Each of these bins can be uniquely
-characterized by an index $i\in[0,\mathcal N_m-1]$, and its corresponding mass value $m_i^\text{c}$,
-situated at the center of the bin (ergo the superfix "c").
+continuous range of masses present in the disk into a set of $\mathcal N_m\in\mathbb N$
+intervals, which from now on will be referred to as mass grid "bins". Each of these bins can
+be uniquely characterized by an index $i\in[0,\mathcal N_m-1]$, and its corresponding mass
+value $m_i^\text{c}$, situated at the center of the bin (ergo the superfix "c").
 
 To derive an expression for these mass values, let us first define the upper and lower
-boundaries of the discrete mass grid. We shall label them $m_\text{max}$ and $m_\text{min}$, respectively.
-Now, consider a collection of $\mathcal N_m+1$ appropriately spaced grid points, which will serve as
-the bin boundaries. The spacing of these grid points of course depends heavily on the utilized
-scaling, which for simplicity shall be assumed to be linear at the moment. Later on, we will
-make use of a logarithmic scaling to assure a better representation of all masses along the
-wide range of mass values present in the disk.
+boundaries of the discrete mass grid. We shall label them $m_\text{max}$ and $m_\text{min}$,
+respectively. Now, consider a collection of $\mathcal N_m+1$ appropriately spaced grid points
+$m_i^\text{b}$, which will serve as the bin boundaries.
 
-Analogously to the bin centers, the boundary points can be labeled by an index $i\in[0,\mathcal N_m]$.
-Here, the corresponding mass value is $m_i^\text{b}$ (with the superscript short for "boundary").
-It can be expressed as
-\begin{align*}
-  m_i^\text{b}=m_\text{min}+(m_\text{max}-m_\text{min})\cdot\frac{i}{\mathcal N_m}
-\end{align*}
-
-To calculate the the mass values for the grid points at the center of a bin, all we have to do
-now is take the arithmetic mean of its two neighboring boundary values, i.e.:
-\begin{align*}
-  m_i^\text{c}=\frac{m_{i+1}^\text{b}+m_i^\text{b}}{2}
-\end{align*}
-
-Thus, after having defined only the three numbers $\mathcal N_m$, $m_\text{min}$, and $m_\text{max}$, it is possible
-to interpolate the values of all mass grid points sitting on the boundaries and/or centers of
-the bins.
-
-The following figure serves as an illustration of what we just built:
 \begin{figure}[h!]
     \caption{Discretized mass axis.}
     \begin{center}
@@ -389,96 +368,143 @@ The following figure serves as an illustration of what we just built:
     \end{center}
 \end{figure}
 
+*** Discretization of the Mass Axis using a Linear Scale
+The spacing of these grid points of course depends heavily on the utilized
+scaling, which for simplicity shall be assumed to be linear at the moment. Later on, we will
+make use of a logarithmic scaling to assure a better representation of all masses along the
+wide range of mass values present in the disk.
+
+Analogously to the bin centers, the boundary points can be labeled by an index $i\in[0,\mathcal N_m]$. The corresponding mass value $m_i^\text{b}$ can be expressed as
+\begin{align*}
+  m_i^\text{b}=m_\text{min}+(m_\text{max}-m_\text{min})\cdot\frac{i}{\mathcal N_m}
+\end{align*}
+
+To calculate the the mass values for the grid points at the center of a bin, all we need to
+do now is take the arithmetic mean of its two neighboring boundary values, i.e.:
+\begin{align*}
+  m_i^\text{c}=\frac{m_i^\text{b}+m_{i+1}^\text{b}}{2}
+\end{align*}
+
+Thus, after having defined only the three numbers $\mathcal N_m$, $m_\text{min}$, and $m_\text{max}$, it is
+possible to interpolate the values of all mass grid points sitting on the boundaries
+and/or centers of the bins.
+
+\newpage
+
+The inverse transformation from mass to index can be determined easily by rearranging the
+above relation. This leads to
+\begin{align*}
+  i(m)=\mathcal N_m\cdot\frac{m-m_\text{min}}{m_\text{max}-m_\text{min}}
+\end{align*}
+-> TODO Conversion: Mass -> Index
+
 _Sidenote_: In the linearily scaled mass grid, the bin "width" is constant, and independent of
-the bin index. This will change once the switch to a logarithmic grid is made! For now though,
-it is given by
+the bin index. This will change once the switch to a logarithmic grid is made! For now
+though, it is given by
 \begin{align*}
   \Delta m=m_{i+1}^\text{b}-m_i^\text{b}=\frac{m_\text{max}-m_\text{min}}{\mathcal N_m}
 \end{align*}
+
+*** Discretization of the Mass Axis using a Logarithmic Scale
+As before, let $\mathcal N_m$ be used to label the number of bins, and let the upper and lower grid
+boundaries be given by $m_\text{min}$ and $m_\text{max}$, respectively.
+
+Once again, we first define an expression for the grid points sitting directly on the bin
+boundaries. Making use of an index $i\in\mathcal[0,N_m]$, they can be uniquely identified and
+calculated via
+\begin{align*}
+  m_i^\text{b}=m_\text{min}\cdot\left(\frac{m_\text{max}}{m_\text{min}}\right)^{i/\mathcal N_m}
+\end{align*}
+To arrive at the mass values at the bin centers, we again take the mean. Here, it's not
+the arithmetic mean though, but the geometric mean, i.e.
+\begin{align*}
+  m_i^\text{c}=\sqrt{m_i\cdot m_{i+1}}
+\end{align*}
+
+In contrast to the linear grid, the bin "width", i.e. the additive offset from one bin to the
+next, is not the same for all bins in the logarithmic grid. Instead, what stays the same for
+is the /relative/ mass increase from one bin to the next.
+
+As above in the linear case, the inverse transformation can be arrived at by rearranging
+for $i$. This leads to
+\begin{align*}
+  i(m)
+  =\mathcal N_m\cdot\frac{\log(m)-\log(m_\text{min})}{\log(m_\text{max})-\log(m_\text{min})}
+\end{align*}
+-> TODO Conversion: Mass -> Index
+
 \newpage
 
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/01/discrete-mass-axis_lin-scale.pdf]]
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}
+    \caption{CAPTION ...}
+\end{figure}
+
 
 \newpage
-** Discretization of the Mass Axis using a Logarithmic Scale
-- As above, $\mathcal N_m$ is used to label the number of bins, and the grid
-  boundaries are labeled $m_\text{min}$ and $m_\text{max}$ to signify the lower and
-  upper bound of the grid, respectively,
-- In contrast to the linear grid, the "width", i.e. additive offset from
-  one bin to the next is not the same for all bins in the logarithmic grid.
-- Instead, the /relative/ mass increase from one mass grid point to the next
-  is what stays the same for all bins $i$.
-- The factor describing this relative mass increase is labeld $q_m$.
-  It has to be chosen in such a way as to satisfy the conditions
-\begin{align*}
-  m_{i+1}=q_m\cdot m_i
-\end{align*}
-\begin{align*}
-  m_\text{max}=m_\text{min}\cdot \big(q_m\big)^{\mathcal N_m}
-\end{align*}
-- This leads to the expression
-\begin{align*}
-  q_m=\sqrt[\leftroot{-2}\uproot{2}N_\text{grid}]{\frac{m_\text{max}}{m_\text{min}}}
-\end{align*}
-*** Mass-Index Conversion on Logarithmic Scale
-**** Index to Mass
-With the above definition of the relative mass increase $q_m$ from
-one grid point to the next, the conversion from index to mass
-becomes trivial. It can be described by
-\begin{align*}
-  m(i)=m_\text{min}\cdot q_m^i
-\end{align*}
-**** Mass to Index
-To arrive at a description for the inverse conversion from mass
-to index, we simply rearange the above for $i$. The resulting
-law can then be written as
-\begin{align*}
-  i(m)=\frac{1}{\log(q_m)}\cdot\log\left(\frac{m_i}{m_\text{min}}\right)
-\end{align*}
-Here, attention needs to be given to one additional step: Since
-the resulting $i$ is not necessarily an integer, the right-hand
-side of the above equation needs to be "floored" (integer division).
 
-[explain: why nearest-lower index, not upper? just convention?]
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/01/discrete-mass-axis_log-scale.pdf]]
-*** "Things to Watch out for"
-When switching from a linear representation of the mass grid to a
-logarithmic representation one, several points need to be adressed
-to guarantee both stability and accuracy of the algorithm.
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{
+            ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
+        }
+        \subcaption{CAPTION ...}
+    \end{minipage}
+    \caption{CAPTION ...}
+\end{figure}
 
-For hit-and-stick collisions:
-**** Mass conservation [rename section?]
-In a merge event, the masses corresponding to the two colliding
-particles have to be removed from the mass distribution, and
-exactly one new particle has to be added. It is important that
-this particle's mass is exactly equal to the sum of the two
-colliding particles' masses, to ensure conservation of mass.
-**** "Non-integer indices of resulting mass" [rename section]
-In a merge event between two masses $m_i$ and $m_j$, the resulting mass
-\begin{align*}
-  m_\text{res}=m_i+m_j
-\end{align*}
-does not necessarily correspond exactly to any of the mass grid points.
-
-Instead, $m_\text{res}$ typically lies somewhere in between two grid points.
-In this case, the mass thus has to be divided between the nearest
-neighboring grid points in some sensible way.
-
-Let the nearest neighbors in the grid be labeled by the indices $k$
-and $k+1$, with $m_k$ being the mass point just below the mass
-resulting from the merge event, and $m_{k+1}$ the mass point just
-above, such that
-\begin{align*}
-  m_{\bar k}<m_\text{res}<m_{\bar k+1}
-\end{align*}
-  i.e.
-\begin{align*}
-  m_{\bar k}
-  \leq m_i+m_j
-  <m_{\bar k+1}
-\end{align*}
+\newpage
 ** Discretization of the Particle Mass Distribution Function
 *** QUES How to discretize the dust particle mass distribution function?
 
