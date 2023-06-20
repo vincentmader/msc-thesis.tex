@@ -294,70 +294,114 @@ It summarizes all aspects of the collisions.
   number density per mass $n(m)$ of particles as they coagulate.
 \newpage
 * Discretization of the Dust Coagulation Model
-** Introduction, Overview, & Goals for this Section
-\newpage
-** Discretization of the Mass Axis
-*** QUES Why do we even need to discretize at all?
-Due to the discrete nature of number representation on computers,
-for numerical treatment it is necessary to move away from the
-continuous representation of the mass grid, the evolution
-equations, and the coagulation kernel. Instead, a discrete
-analogon has to be constructed.
-*** QUES How to discretize the mass axis in a linear fashion?
-- Here: The relevant dimension is that of /mass/.
-  + We look at the distribution of differently-sized particles in the disk,
-    and how that distribution (defined on the mass axis) changes with time.
-- In reality, the involved scales for the masses of particles in the disk
-  range from those of individual atoms up to those of planets.
-  + I.e., approximately from 1 proton mass to 1 Jupiter mass.
-    That's quite the range!
-  + In this thesis, we will limit this range, since we're specifically
-    interested in the evolution of the distribution of /dust particles/.
-  + Let $m_\text{min}$ and $m_\text{max}$ label the minimum and maximum masses
-    "relevant to our discussion", respectively.
-    ~TODO~: Define minimum & maximum mass relevant for dust.
-  + Therefore it will not make sense to use a linear representation of the
-    mass axis, since "small masses will be under-, and large masses overrepresented".
-    ~TODO~: Is the sentence about overrepresentation correct?
-- Let's not get ahead of ourselves & start with a very simple/basic model:
-  + We will start off by discretizing the mass axis in a linear fashion.
-  + Therefore, we will "split" the axis into a number of "grid points" / "bins".
-- Let $\mathcal N_m$ label the number of grid points.
-  + ~TODO~: Decide: Is N_m the number of grid points, or the number of bins?
-          Be consistent here!
-- ~TODO~: Define the grid spacing.
-\newpage
-*** Discretization of the Mass Axis
-**** Introduction
-- The continuous range of masses inside the disk is partitioned into $\mathcal N_m\in\mathbb N$ "bins".
-- Change in notation: Use indices to label the mass grid bins:
+Due to the discrete nature of number representation on digital computers, it is necessary
+for numerical treatment to move away from a continuous representation. Instead, a discrete
+analogon has to be constructed for the mass grid, the evolution equations, as well as the
+coagulation kernel.
+** Discretization of the Mass Axis using a Linear Scale
+We will start with the discretization of the mass axis: Here, the goal is to partition the
+continuous range of masses present in the disk into a set of $\mathcal N_m\in\mathbb N$ intervals, which
+from now on will be referred to as mass grid "bins". Each of these bins can be uniquely
+characterized by an index $i\in[0,\mathcal N_m-1]$, and its corresponding mass value $m_i^\text{c}$,
+situated at the center of the bin (ergo the superfix "c").
+
+To derive an expression for these mass values, let us first define the upper and lower
+boundaries of the discrete mass grid. We shall label them $m_\text{max}$ and $m_\text{min}$, respectively.
+Now, consider a collection of $\mathcal N_m+1$ appropriately spaced grid points, which will serve as
+the bin boundaries. The spacing of these grid points of course depends heavily on the utilized
+scaling, which for simplicity shall be assumed to be linear at the moment. Later on, we will
+make use of a logarithmic scaling to assure a better representation of all masses along the
+wide range of mass values present in the disk.
+
+Analogously to the bin centers, the boundary points can be labeled by an index $i\in[0,\mathcal N_m]$.
+Here, the corresponding mass value is $m_i^\text{b}$ (with the superscript short for "boundary").
+It can be expressed as
 \begin{align*}
-  m\to m_i
-  \ \ \ \ \text{with}\ \ \ \
-  i\in\mathbb N\cap[0,\ \mathcal N_m)
+  m_i^\text{b}=m_\text{min}+(m_\text{max}-m_\text{min})\cdot\frac{i}{\mathcal N_m}
 \end{align*}
-- For the lower & upper boundaries of the resulting mass grid, an appropriate choice
-  of a minimum mass value $m_\text{min}$ and maximum mass value $m_\text{max}$ has to be made.
-\newpage
-**** Discretization of the Mass Axis on a Linear Scale
-- Pro: Simpler to implement than logarithmic grid.
-- Con: Under-representation of small, over-representation of large masses.
-- Later: Logarithmic, better representation of all orders of magnitude.
-- The bins are defined in such a way that the boundaries are centered
-  around the mass $m_i$. The lower and upper boundaries of a bin with
-  index $i$ are then given by the masses $m_{i-1/2}$ and $m_{i+1/2}$.
-- In the linear case, the "width" of each bin is given by
+
+To calculate the the mass values for the grid points at the center of a bin, all we have to do
+now is take the arithmetic mean of its two neighboring boundary values, i.e.:
 \begin{align*}
-m_{i+1/2}-m_{i-1/2}=\frac{m_\text{max}-m_\text{min}}{\mathcal N_m}
+  m_i^\text{c}=\frac{m_{i+1}^\text{b}+m_i^\text{b}}{2}
 \end{align*}
-- Note that this width is constant across all bins, independent of
-  their labeling indices. This will change once the switch to a
-  logarithmic grid is made. [...]
-**** Mass-Index Conversion on Linear Scale
+
+Thus, after having defined only the three numbers $\mathcal N_m$, $m_\text{min}$, and $m_\text{max}$, it is possible
+to interpolate the values of all mass grid points sitting on the boundaries and/or centers of
+the bins.
+
+The following figure serves as an illustration of what we just built:
+\begin{figure}[h!]
+    \caption{Discretized mass axis.}
+    \begin{center}
+        \begin{tikzpicture}
+            \def\N{4}      % This is the number of cells drawn (to the left of "..." separator).
+            \def\M{5}      % This is the number of boundary arrows drawn (left of "...").
+            \def\W{1.5}    % This is a cell's width.
+            \def\H{\W}     % This is a cell's height.
+            \def\L{\W/4}   % This is an arrow's length.
+            \def\P{\W/8}   % This is the padding between arrow & cell.
+            \def\R{\W/16}  % This is the padding between arrow & text.
+
+            % Draw cells...
+            % ...to the left of "..." separator.
+            \foreach \x in {0, ..., \N} {
+                \draw[draw=black] (\x*\W, 0) rectangle ++(\W, \H);
+            }
+            % ...to the right of "..." separator.
+            \draw[draw=black] (\N*\W+2*\W, 0) rectangle ++(\W, \H);
+
+            % Draw crosses...
+            % ...to the left of "..." separator.
+            \foreach \x in {0, ..., \N} {
+                \draw (\x*\W+\W/2, \H/2) node {\tiny x};
+            }
+            % ...to the right of "..." separator.
+            \draw (\N*\W+2.5*\W, \H/2) node {\tiny x};
+
+            % Draw "..." separator.
+            \node[] at (\N*\W+1.5*\W, \H/2) {...};
+
+            % Draw arrows labeling cell boundaries.
+            \foreach \x in {0, ..., \M} {
+                \draw [-to](\x*\W, \H+\L+\P) -- (\x*\W, \H+\P);
+                \node[] at (\x*\W, \H+\L+\P+\L+\R) {$m_\x^\text{b}$};
+            }
+            \draw [-to](\N*\W+2*\W, \H+\L+\P) -- (\N*\W+2*\W, \H+\P);
+            \draw [-to](\N*\W+3*\W, \H+\L+\P) -- (\N*\W+3*\W, \H+\P);
+            \node[] at (\N*\W+2*\W, \H+\L+\P+\L+\R) {$m_{\mathcal N_m}^\text{b}$};
+            \node[] at (\N*\W+3*\W, \H+\L+\P+\L+\R) {$m_{\mathcal N_m+1}^\text{b}$};
+
+            % Draw arrows labeling cell centers.
+            \foreach \x in {0, ..., \N} {
+                \draw [-to](\x*\W+\W/2, 0-\L-\P) -- (\x*\W+\W/2, 0-\P);
+                \node[] at (\x*\W+\W/2, 0-\L-\P-\L-\R) {$m_\x^\text{c}$};
+            }
+            \draw [-to](\N*\W+2.5*\W, 0-\L-\P) -- (\N*\W+2.5*\W, 0-\P);
+            \node[] at (\N*\W+2.5*\W, 0-\L-\P-\L-\R) {$m_{\mathcal N_m}^\text{c}$};
+
+            % Draw labels for `m_min` and `m_max`.
+            \node[] at (0, \H+\L+\P+\L+\R+\L+\L) {$m_\text{min}$};
+            \node[] at (\N*\W+3*\W, \H+\L+\P+\L+\R+\L+\L) {$m_\text{max}$};
+            \node[] at (0, \H+\L+\P+\L+\R+\L) {$=$};
+            \node[] at (\N*\W+3*\W, \H+\L+\P+\L+\R+\L) {$=$};
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+_Sidenote_: In the linearily scaled mass grid, the bin "width" is constant, and independent of
+the bin index. This will change once the switch to a logarithmic grid is made! For now though,
+it is given by
+\begin{align*}
+  \Delta m=m_{i+1}^\text{b}-m_i^\text{b}=\frac{m_\text{max}-m_\text{min}}{\mathcal N_m}
+\end{align*}
+\newpage
+
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/01/discrete-mass-axis_lin-scale.pdf]]
+
 \newpage
-**** Discretization of the Mass Axis on a Logarithmic Scale
+** Discretization of the Mass Axis using a Logarithmic Scale
 - As above, $\mathcal N_m$ is used to label the number of bins, and the grid
   boundaries are labeled $m_\text{min}$ and $m_\text{max}$ to signify the lower and
   upper bound of the grid, respectively,
@@ -377,15 +421,15 @@ m_{i+1/2}-m_{i-1/2}=\frac{m_\text{max}-m_\text{min}}{\mathcal N_m}
 \begin{align*}
   q_m=\sqrt[\leftroot{-2}\uproot{2}N_\text{grid}]{\frac{m_\text{max}}{m_\text{min}}}
 \end{align*}
-**** Mass-Index Conversion on Logarithmic Scale
-***** Index to Mass
+*** Mass-Index Conversion on Logarithmic Scale
+**** Index to Mass
 With the above definition of the relative mass increase $q_m$ from
 one grid point to the next, the conversion from index to mass
 becomes trivial. It can be described by
 \begin{align*}
   m(i)=m_\text{min}\cdot q_m^i
 \end{align*}
-***** Mass to Index
+**** Mass to Index
 To arrive at a description for the inverse conversion from mass
 to index, we simply rearange the above for $i$. The resulting
 law can then be written as
@@ -399,20 +443,19 @@ side of the above equation needs to be "floored" (integer division).
 [explain: why nearest-lower index, not upper? just convention?]
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/01/discrete-mass-axis_log-scale.pdf]]
-\newpage
-**** "Things to Watch out for"
+*** "Things to Watch out for"
 When switching from a linear representation of the mass grid to a
 logarithmic representation one, several points need to be adressed
 to guarantee both stability and accuracy of the algorithm.
 
 For hit-and-stick collisions:
-***** Mass conservation [rename section?]
+**** Mass conservation [rename section?]
 In a merge event, the masses corresponding to the two colliding
 particles have to be removed from the mass distribution, and
 exactly one new particle has to be added. It is important that
 this particle's mass is exactly equal to the sum of the two
 colliding particles' masses, to ensure conservation of mass.
-***** "Non-integer indices of resulting mass" [rename section]
+**** "Non-integer indices of resulting mass" [rename section]
 In a merge event between two masses $m_i$ and $m_j$, the resulting mass
 \begin{align*}
   m_\text{res}=m_i+m_j
@@ -436,8 +479,6 @@ above, such that
   \leq m_i+m_j
   <m_{\bar k+1}
 \end{align*}
-\newpage
-\newpage
 ** Discretization of the Particle Mass Distribution Function
 *** QUES How to discretize the dust particle mass distribution function?
 
