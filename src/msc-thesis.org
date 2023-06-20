@@ -51,6 +51,7 @@ which can be categorized into
   + Thus, a disk is formed.
 *** Star Formation at the Disk Center
 - gravity $\to$ high pressure $\to$ nuclear fusion
+  \newpage
 *** Spatial Structure of Proto-Planetary Disks
 
 ~QUES~: Talk about
@@ -162,9 +163,9 @@ _Porosity_:
   + Therefore, the dust particles are "slowed down" and spiral inwards.
 *** QUES What other effects are there?
 ~TODO~: Talk about (relative) velocity components.
-\newpage
 *** Gas Kinematics inside PPDs
 *** Dust Kinematics inside PPDs
+\newpage
 ** Planet Formation inside Proto-Planetary Disks
 *** Particle-Particle Collisions
 
@@ -465,6 +466,7 @@ What do we need to define?
 - Azimuthal angle
   + Assume radial symmetry $\to$ no dependence on azimuthal angle.
 ** Total Disk Mass Calculation
+\newpage
 * Definition of a simplified Model for Dust Coagulation
 ** Ensemble Approach
 *** QUES How can particle collisions be modeled?
@@ -932,6 +934,32 @@ Equivalent formulation: [which one to use? I like the lower one <3]
 \end{align*}
 
 \newpage
+** Initialization of the Particle Mass Distribution Function
+*** QUES How to initialize the particle mass distribution function?
+
+Now, let us turn our attention to the initialization of the particle
+mass distribution function.
+
+_Options_:
+1. Dirac-delta distribution
+2. MRN distribution
+
+What would be best?
+- MRN is more physical than Dirac-delta. (see later chapter)
+- It does not /really/ make that much of a difference though.
+- The information about the initialization is quickly lost anyways.
+- Both 1. & 2. qualitatively lead to the same results (even if not quantitatively).
+
+_Observation_:
+- Using the MRN distribution leads to a significant slowdown of the integration.
+  (minutes, instead of seconds)
+- This might be because I chose $m_\text{max}$ to be the largest mass grid bin.
+  + Do not do this!
+  + This is unphysical!
+  + Instead use $\approx0.5\mum$
+- Test whether this problem persists!
+
+\newpage
 ** Integration of the Smoluchovski Equation
 *** QUES How to discretize the time axis in a linear fashion?
 
@@ -1064,44 +1092,16 @@ Here, $\delta_D$ labels the Dirac delta function.
 [...]
 
 \newpage
-** Initialization of the Particle Mass Distribution Function
-*** QUES How to initialize the particle mass distribution function?
-
-Now, let us turn our attention to the initialization of the particle
-mass distribution function.
-
-_Options_:
-1. Dirac-delta distribution
-2. MRN distribution
-
-What would be best?
-- MRN is more physical than Dirac-delta. (see later chapter)
-- It does not /really/ make that much of a difference though.
-- The information about the initialization is quickly lost anyways.
-- Both 1. & 2. qualitatively lead to the same results (even if not quantitatively).
-
-_Observation_:
-- Using the MRN distribution leads to a significant slowdown of the integration.
-  (minutes, instead of seconds)
-- This might be because I chose $m_\text{max}$ to be the largest mass grid bin.
-  + Do not do this!
-  + This is unphysical!
-  + Instead use $\approx0.5\mum$
-- Test whether this problem persists!
-
-\newpage
-** Visualization of Numerical Integration Results
+** Numerical Integration with the Explicit Euler Scheme
 *** QUES Why does the mass error increase over time? -> "Mass Outflow"
 \newpage
 *** Hit-and-Stick Collision on Linear Mass Grid
 *** Hit-and-Stick Collision on Logarithmic Mass Grid
+\newpage
 * Implementation of a Logarithmic Mass Axis Representation
 ** Introduction, Overview, & Goals for this Section
-\newpage
 ** Reasons for Making Use of a Logarithmic Representation
-\newpage
 ** Challenges Associated with a Logarithmic Representation
-\newpage
 ** Definition of the Logarithmic Mass Axis
 *** QUES How to discretize the mass axis in a logarithmic fashion?
 \newpage
@@ -1259,8 +1259,6 @@ analytically, and write:
 \newpage
 ** The MRN Distribution
 - introduced by Mathis-Rumpl-Nordsieck, 1977
-\newpage
-** "Redistribution of Mass onto the Bins using MRN Distribution"
 *** QUES How to implement MRN distribution (for initialization)?
 
 Particle mass distribution function is defined by the condition:
@@ -1333,7 +1331,6 @@ _Answer_:
 - One could specify the method in `config.toml`, or just use one of the methods.
 
 *** QUES Test integration speed with MRN distribution enabled. Is there a slowdown?
-\newpage
 ** "Implementation of Near-Zero-Cancellation Handling for Fragmentation" (?)
 \newpage
 * Definition of a the Dust Particle Reaction Rates
