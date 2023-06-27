@@ -241,30 +241,41 @@ though, it is given by
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Calculation of mass values from bin indices.
+        }
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Calculation of bin indices from mass values.
+        }
     \end{minipage}
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Roundtrip transformation: Bin index $\to$ mass value $\to$ bin index.
+        }
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Roundtrip transformation: Mass value $\to$ bin index $\to$ mass value.
+        }
     \end{minipage}
-    \caption{CAPTION ...}
+    \caption{
+        Transformation between bin indices and mass values on a
+        linearily scaled discretized mass axis.
+    }
 \end{figure}
 
 \newpage
@@ -305,30 +316,41 @@ for $i$. This leads to the following expression:
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Calculation of mass values from bin indices.
+        }
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Calculation of bin indices from mass values.
+        }
     \end{minipage}
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Roundtrip transformation: Bin index $\to$ mass value $\to$ bin index.
+        }
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
         }
-        \subcaption{CAPTION ...}
+        \subcaption{
+            Roundtrip transformation: Mass value $\to$ bin index $\to$ mass value.
+        }
     \end{minipage}
-    \caption{CAPTION ...}
+    \caption{
+        Transformation between bin indices and mass values on a
+        logarithmically scaled discretized mass axis.
+    }
 \end{figure}
 
 \newpage
@@ -830,8 +852,23 @@ particle maximum drift velocity:
 \begin{align*}
   u_n=-\frac{E_d}{2\rho_g\ \Omega_K}\cdot\pderiv{P_g}{r}
 \end{align*}
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/22/dv_RD.pdf]]
+
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{
+        ../../msc-thesis.py/figures/13/dv_RD.pdf
+    }
+    \caption{
+        CAPTION ... \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.
+    }
+\end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Differential Settling
 \begin{align*}
@@ -845,8 +882,22 @@ particle maximum drift velocity:
 \end{align*}
 \begin{align*}
 \end{align*}
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/22/dv_DS.pdf]]
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{
+        ../../msc-thesis.py/figures/13/dv_DS.pdf
+    }
+    \caption{
+        CAPTION ... \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.
+    }
+\end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Brownian Motion
 \begin{align*}
@@ -854,12 +905,40 @@ particle maximum drift velocity:
      &=\sqrt{\frac{8k_BT}{\pi}\cdot\frac{m_i+m_j}{\ m_i\cdot m_j}}\\
      &=\sqrt{\frac{8}{\pi\beta\mu_{ij}}}
 \end{align*}
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/22/dv_BR.pdf]]
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{
+        ../../msc-thesis.py/figures/13/dv_BR.pdf
+    }
+    \caption{
+        CAPTION ... \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.
+    }
+\end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Turbulence
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/22/dv_TU.pdf]]
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{
+        ../../msc-thesis.py/figures/13/dv_TU.pdf
+    }
+    \caption{
+        CAPTION ... \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.
+    }
+\end{figure}
 \newpage
 ** Definition of the Azimuthal Relative Velocity
 \begin{align*}
@@ -868,8 +947,23 @@ particle maximum drift velocity:
     \frac{1}{1+\text{St}_i^2}-\frac{1}{1+\text{St}_j^2}
   \right)\right|
 \end{align*}
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/22/dv_AZ.pdf]]
+
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{
+        ../../msc-thesis.py/figures/13/dv_AZ.pdf
+    }
+    \caption{
+        CAPTION ... \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.
+    }
+\end{figure}
 \newpage
 ** Total Relative Velocity
 \begin{align*}
@@ -878,8 +972,23 @@ particle maximum drift velocity:
 \begin{align*}
   \Delta u_{ij}=\sqrt{\Delta u_\text{BR}^2+\Delta u_\text{RD}^2+\Delta u_\text{AZ}^2+\Delta u_\text{TU}^2+\Delta u_\text{DS}^2}
 \end{align*}
-#+ATTR_LATEX: :width \textwidth
-[[../../msc-thesis.py/figures/22/dv_tot.pdf]]
+
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{
+        ../../msc-thesis.py/figures/13/dv_tot.pdf
+    }
+    \caption{
+        CAPTION ... \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.
+    }
+\end{figure}
 \newpage
 * Implemention of Stochastic Kernel Sampling
 \newpage
@@ -893,6 +1002,10 @@ a \cite{mathis_rumpl_nordsieck_1977}
 b \cite{dullemond_dominik_2004}
 c \cite{brauer_dullemond_henning_2008}
 d \cite{birnstiel_dullemond_brauer_2010}
+e \cite{kovetz_olund_1969}
+f \cite{smoluchowski_1916}
+
+\newpage
 * +References+
 \bibliographystyle{plain}
 \bibliography{./bibliography/ref.bib}
