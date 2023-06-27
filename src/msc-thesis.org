@@ -2,13 +2,15 @@
 #+startup: latexpreview show2levels
 #+author: Vincent C. Mader
 #+title: Computational Cost Optimization via Stochastic Kernel Sampling for the Numerical Integration of the Smoluchovski Coagulation Equation
+\newpage
 #+latex: \listoffigures
+\newpage
 #+latex: \listoftables
 \newpage
 * Preface
 ** Acknowledgements
 \newpage
-** WAIT Abstract
+** Abstract
 _What is the topic of this thesis?_
 - We want to =test whether= the numerical =integration=
   of the Smoluchovski =coagulation equation= can be =sped up=
@@ -28,278 +30,90 @@ _What is the topic of this thesis?_
   (and by =how much= the computational cost can be reduced)
   is the big goal of this thesis.
 \newpage
-* Definition of a simplified Model for Dust Coagulation
-** WAIT Ensemble Approach
-*** QUES How can particle collisions be modeled?
+* Introduction
+* Definition of a Simplified Dust Coagulation Model
+** Prerequisites and Assumptions
+Consider a distribution of dust particles with different masses $m$. For simplicity,
+all of them are assumed to share the same material density $\rho_s$, as well as all other
+properties except their particle mass and radius.
 
-["ensemble approach"]
-
-[...]
-
-- Particle collisions can be modeled using the Smoluchovski equation.
-
-[...]
-
-\newpage
-\newpage
-*** QUES What is a particle distribution function?
-
-- Consider a distribution of particles.
-- Let the particles have various different properties,
-  e.g. position, velocity, and mass.
-- Assume these properties to /not/ be distributed homogenously among the particles.
-- The distribution can then be described by a fitting /particle distribution function/
-  $$f(...)=...$$
-
-~QUES~: Continue writing this section.
-- What is a particle distribution function /generally/?
-
-*** QUES What is the dust particle distribution function?
-
-~QUES~: Apply the definition of a general particle distribution function (from above)
-      to the (special) case of a protoplanetary disk.
-- We assumed the relevant properties to be
-  + radial position in the disk (radial distance from star)
-  + height above the midplane
-  + particles mass
-- These properties (in general) depend on time.
-
-Therefore, we can write the distribution function for dust particles inside the modeled PPD as
-
-\begin{align*}
-  f(r,z,m,t)
-\end{align*}
-
-- NOTE:
-  + After this section, focus (for now) on naive/simple particle /mass distribution function/.
-
-*** QUES Assumptions needed for the (naive/simple) particle mass distribution.
-
-Consider a distribution of dust particles with different masses $m$.
-- Let them all have the same material density $\rho_s$ (and other properties).
-- Also, (for now) assume that their shape is always spherical.
-
-Then, each dust particle is characterized solely by its mass, and hence its radius $a$:
-
+In this highly simplified model, the particles are furthermore assumed to be spherically
+shaped, such that the relationship between mass $m$ and radius $a$ can be expressed as
 \begin{align*}
   m=\frac{4\pi}{3}\rho_s a^3
 \end{align*}
-
-*** QUES What is the dust particle mass distribution function?
-
-The particle mass distribution function $n(m)$
-is defined in such a way that the integral
-
+** The Dust Particle Mass Distribution Function
+Let $n(m)$ label the /particle mass distribution function/, i.e. the number of particles
+per unit volume that possess a given mass value $m$. This distribution function shall be
+defined in such a way that the total number $N$ of particles per unit volume is given by
 \begin{align*}
   N=\int_0^\infty n(m)\ \dd m
 \end{align*}
 
-is the total number of dust particles per unit volume.
-
-Following from that, the integral
-
+The mass density $\rho_s$, i.e. the total mass per unit volume, can then be written as
 \begin{align*}
-  \rho=\int_0^\infty m\cdot n(m)\ \dd m
+  \rho_s=\int_0^\infty m\cdot n(m)\ \dd m
 \end{align*}
+** Dust Particle Collisions
+The movement of particles inside a protoplanetary disk can be assumed to be partly systematic
+(due to velocity contributions of e.g. Keplerian motion) and partly random (due to effects of
+e.g. Brownian or turbulent motion). This leads to occasional collision events.
 
-gives the total dust mass per unit volume, i.e. the dust density.
+The probability of more than two particles being involved in the same collision is so small
+that the rate of simultaneous interactions between three (or more) bodies can be neglected
+entirely. Thus, in this model, all collisions are assumed to be two-body collisions.
 
-\newpage
-*** QUES What happens when particles collide? (from standpoint of particle mass distr.)
+When two particles collide, there can be a number of different collision outcomes that have
+to be taken into consideration. A simple approach of classifying these outcomes is to group
+them into the following three scenarios:
 
-Collisions can be regarded as two-body collisions:
-- The occurrence of three-body interactions is so tiny
-  that it can be neglected entirely (negligible).
+1. /Bouncing/:
+   Here, nothing really happens from the point of view of the particle mass distribution
+   function. The particles collide, but do not exchange any mass. The collision itself of
+   course /can/ have an effect on the particle kinematics via the exchange of momentum, but the
+   distribution of masses stays unchanged. For that reason, this outcome does not have to be
+   taken into account when modeling the evolution of the particle mass distribution.
 
-_Outcomes_:
-1. bouncing
-2. merging
-3. fragmentation
+2. /Merging/:
+   The second case is more interesting for us: Here, the two colliding particles merge and form
+   a single new particle. Thus, the two initial particles with mass values $m_1$ and $m_2$
+   disappear, while a new particle with mass $m_1+m_2$ is created. The removal/addition of these
+   masses from/to the mass distribution has to be handled in some fitting way, and we will take
+   a look at how to do this in the next section.
 
-_Bouncing_:
-- Here: The only property we trace is the particle mass.
-- Therefore, "nothing happens".
+3. /Fragmentation/:
+   In the third case, the two colliding particles do also "disappear" during the interaction.
+   In contrast to the case of merging though, here it is possible that a whole series of
+   particles is brought into existence. When two particles collide and fragment, various
+   smaller particles with different mass values can be created, under the condition that the
+   sum of particle masses is equal to the total mass $m_1+m_2$ before the interaction.
 
-_Merging_:
-- The two original particles with masses $m_1$ and $m_2$ "disappear".
-- A single new particle with mass $m_\text{tot}=m_1+m_2$ "appears".
-
-_Fragmentation_:
-- The two original particles with masses $m_1$ and $m_2$ also "disappear".
-- But: A whole series/range of particles can appear,
-  with a total mass of $m_\text{tot}=m_1+m_2$
-
-The input to a collision event are therefore always two bodies, but
-the output can be any number of particles.
-
-** WAIT The Dust Particle Mass Distribution Function
-- Continuous
-- Let $n(m)$ be the particle mass distribution function, i.e.
-  the number of particles per unit volume that possess a mass $m$.
-- Total number of particles per unit volume:
-\begin{align*}
-  N=\int_0^\infty n(m)\ \dd m
-\end{align*}
-- Total mass per unit volume: (mass density)
-\begin{align*}
-  \rho=\int_0^\infty m\cdot n(m)\ \dd m
-\end{align*}
-- Total disk mass: (correct?)
-\begin{align*}
-m_D
-&=\int_0^{2\pi}\int_0^\infty\int_{-\infty}^\infty\rho\ \dd\phi\ \dd r\ \dd z\\
-% &=\int_0^{2\pi}\int_0^\infty\int_{-\infty}^\infty\int_0^\infty m\cdot n(m)\ \dd\phi\ \dd r\ \dd z\ \dd m
-% &=\int_0^{2\pi}\dd\phi\int_0^\infty\dd r\int_{-\infty}^\infty\dd z\int_0^\infty\dd m\ m\cdot n(m)
-\end{align*}
-*** Initialization
-**** Dirac-delta
-Together with the normalization criterion from above, the
-Dirac-delta distribution $\delta_D$ is defined by the condition
-\begin{align*}
-  \delta_D(x)=0\ \forall x\neq0
-\end{align*}
-Assuming all particles have a starting mass $m_0$, we can write the
-initial discrete mass distribution function as
-\begin{align*}
-  N_i=\delta_D(m_i-m_0)
-\end{align*}
-**** Gaussian
-The Gaussian distribution $f_\text{Gauss}$ is given by
-\begin{align*}
-  f_\text{Gauss}(x)
-  =\frac{1}{\sigma\sqrt{2\pi}}\cdot
-  \exp\left(-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}\right)
-\end{align*}
-Here, $\mu$ labels the "expectation value" around which the distribution
-is centered, and $\sigma^2$ is the variance distribution's variance ("width").
-
-Assuming a Gaussian state in the beginning of the simulation, the
-initial discrete mass distribution function can then be written as
-\begin{align*}
-  N_i=f_\text{Gauss}(m_i)
-\end{align*}
-**** Flat (homogenous)
-Choose $N_i$ in such a way that
-\begin{align*}
-  N_i=C\ \ \ \forall i
-\end{align*}
-with a constant $C$.
-
-The normalization condition leads to
-\begin{align*}
-  C=\frac{1}{\mathcal N_m}
-\end{align*}
-and thus also
-\begin{align*}
-  N_i=\frac{1}{\mathcal N_m}
-\end{align*}
-**** "True Flat"
-Choose $N_i$ in such a way that
-\begin{align*}
-  m_i\cdot N_i=C\ \ \ \forall i\in[0,\mathcal N_m-1)\cap\mathbb N
-\end{align*}
-with a constant $C\in\mathbb R$.
-
-This leads to
-\begin{align*}
-  N_i=\frac{C}{m_i}
-\end{align*}
-
-Before we can construct the discretized initial particle density
-distribution function though, we need to find out what $C$ is. A
-constraint for this is given by the normalization condition
-\begin{align*}
-  1=\sum_{i=0}^{\mathcal N_m-1}N_i
-\end{align*}
-
-Plugging in and rearranging for $C$ leads to
-\begin{align*}
-  C=\frac{1}{\sum_{i=0}^{\mathcal N_m-1}\frac{1}{m_i}}
-\end{align*}
-*** Normalization
-All of the following distributions (here labeled $f$) are normalized
-in such a way that the condition
-\begin{align*}
-  \int_{-\infty}^\infty f(x)\ \dd x=1
-\end{align*}
-holds. This then assures that the total disk mass
-\begin{align*}
-  \sum_{i=0}^{\mathcal N_m-1}N_i=1
-\end{align*}
-is equal to unity (bounded, not too large, easy conservation-checking).
-[Is this correct?]
-**** NOTE (delete later)
-- $x$ labels the values $m_i$ of the discretized mass grid.
-- $f(x)$ labels the discretized particle mass distribution function
-  \begin{align*}
-    N_i=\int_{i-\frac{1}{2}}^{i+\frac{1}{2}}n(m)\ \dd m
-  \end{align*}
-\newpage
-\newpage
-** WAIT The Smoluchovski Coagulation Equation
-*** QUES What is the Smoluchovski coagulation equation?
-
-The general time evolution of the particle mass distribution function
-due to collision can (by virtue of the two-body nature) be expressed
-using the Smoluchovski coagulation equation.
-
-... background ... [1916 Smoluchovski]
-
-The coagulation equation reads
-
+To summarize: In this model, the input to a collision event is assumed to /always/ be two
+particles, while the output can be any (natural) number, from a single particle in the case
+of merging, to very many particles in the case of fragmentation.
+** The Smoluchovski Coagulation Equation
+Let us now turn our attention towards the question of how to formulate a model for the
+particle mass distribution's evolution in time. One such model is given by the following
+integro-differental population balance equation:
 \begin{align*}
   \deriv{n}{t}(m,t)=\int_0^\infty\int_0^\infty K(m,m',m'')\cdot n(m',t)\cdot n(m'',t)\ \dd m'\ \dd m''
 \end{align*}
+This equation is typically referred to as the /Smoluchovski equation/, due to its treatment by
+Marian Smoluchovski in 1916 [cite]. It describes how the number $n$ of particles (per unit
+volume) with mass $m$ is affected by collision events at time $t$ involving two particles
+with masses $m'$ and $m''$.
 
-Here, $K(m,m',m'')$ labels the "so-called" /coagulation kernel/.
-
-This general form of the (temporal) evolution equation of
-the particle mass distribution function encompasses all
-possible collision outcomes (bouncing, merging, fragmentation).
-
-The Smoluchowski coagulation equation is a (nonlinear?) integro-differential equation.
-It is used to model the evolution of system in which particles undergo aggregation.
-
-*** QUES What is the coagulation kernel?
-- NOTE:
-  + Stay very general/"vague" here.
-  + Details will follow in sections on stick-and-hit / fragmentation.
-
-- First problem to look at:
-  + simple case of Stick-and-Hit coagulation
-
-- But before we do that, we need to talk about discretization...
-  + discretization of mass axis
-  + discretization of dust particle (mass) distribution function
-  + discretization of kernel
-  + discretization of time axis
-- ...and about numerical integration of the Smoluchovski equation
-  + for that, we need to talk about discretization of the time axis
-\newpage
-*** Smoluchovski Coagulation Equation
-A commonly-used method of formulating a general description for
-the temporal evolution of a protoplanetary disk's particle mass
-distribution is given by the Smoluchovski coagulation equation:
-\begin{align*}
-  \pderiv{n(m,t)}{t}
-  =\int_0^\infty\int_0^\infty
-  K(m,m_1,m_2)\cdot n(m_1,t)\cdot n(m_2,t)\ \dd m_1\ \dd m_2
-\end{align*}
-Here, $K(m,m_1,m_2)$ labels the /coagulation kernel/, into
-which all information on the collisional dynamics is encoded.
-It summarizes all aspects of the collisions.
-- integro-differential equation, population balance equation
-- introduced by M.V. Smoluchovski in 1916
-- can be used to determine the temporal evolution of the
-  number density per mass $n(m)$ of particles as they coagulate.
+The quantity $K(m,\ m', m'')$ is called the (coagulation) /kernel/. It encodes all the
+information about the collision events, their rates, and their outcomes.
+** The Coagulation Kernel
 \newpage
 * Discretization of the Dust Coagulation Model
-** WAIT +Introduction/General Idea+
+** +Introduction/General Idea+
 Due to the discrete nature of number representation on digital computers, it is necessary
 for numerical treatment to move away from a continuous representation. Instead, a discrete
 analogon has to be constructed for the mass grid, the evolution equations, as well as the
 coagulation kernel.
-** TODO Discretization of the Mass Axis
+** Discretization of the Mass Axis
 *** +Introduction/General Idea+
 We will start with the discretization of the mass axis: Here, the goal is to partition the
 continuous range of particle masses $m$ present in the disk into a set of $\mathcal N_m\in\mathbb N$
@@ -519,22 +333,7 @@ for $i$. This leads to the following expression:
 
 \newpage
 
-** WAIT Discretization of the Particle Mass Distribution Function
-*** QUES How to discretize the dust particle mass distribution function?
-
-\begin{align*}
-  n_i:=n(m_i)
-\end{align*}
-
-To be more specific, the current time value should be included into the
-notation as well. We define:
-
-\begin{align*}
-  n_{i,\xi}:=n(m_i,t_\xi)
-\end{align*}
-
-\newpage
-*** Discretization
+** Discretization of the Particle Mass Distribution Function
 Just as we discretized the range of masses, so we also have
 to discretize the particle mass distribution function.
 For this, we define:
@@ -556,8 +355,7 @@ mass, one has to sum over all bins:
 \begin{align*}
   \rho=\sum_{i=0}^{\mathcal N_m-1}\rho_i
 \end{align*}
-** WAIT Discretization of the Smoluchovski Coagulation Equation
-*** QUES How to discretize the Smoluchovski equation?
+** Discretization of the Smoluchovski Coagulation Equation
 
 With $i,j\in\mathbb N$ "being indices":
 
@@ -576,8 +374,7 @@ Equivalent formulation: [which one to use? I like the lower one <3]
 \end{align*}
 
 \newpage
-** WAIT Initialization of the Particle Mass Distribution Function
-*** QUES How to initialize the particle mass distribution function?
+* Initialization of the Particle Mass Distribution Function
 
 Now, let us turn our attention to the initialization of the particle
 mass distribution function.
@@ -602,8 +399,8 @@ _Observation_:
 - Test whether this problem persists!
 
 \newpage
-** WAIT Integration of the Smoluchovski Equation
-*** QUES How to discretize the time axis in a linear fashion?
+* Integration of the Smoluchovski Equation
+** How to discretize the time axis in a linear fashion?
 
 Let the temporal domain be divided into $\mathcal N_t$ discrete "bins".
 Then, let $\xi$ be the index used to uniquely identify each time step, i.e.
@@ -627,21 +424,21 @@ stability of the integration scheme.
 
 [...CFL criterion...]
 [...implicit integration...]
-*** QUES What is the difference between additive/multiplicative incrementation of time
+** What is the difference between additive/multiplicative incrementation of time
 - TODO: Move?
-**** Additive time-steps
+*** Additive time-steps
 - straightforward approach
 - incrementation of time via
 \begin{align*}
   t_{n+1}=t_n+\Delta t
 \end{align*}
-**** Multiplicative time-steps
+*** Multiplicative time-steps
 - more appropriate here [explain why]
 \begin{align*}
   t_{n+1}=t_n\cdot q_t
 \end{align*}
 
-*** QUES How to integrate the Smoluchovski equation using an explicit Euler scheme?
+** How to integrate the Smoluchovski equation using an explicit Euler scheme?
 
 As above, we use the notation $n_{i,\xi}$ to label the dust particle mass distribution
 function evaluated for the mass $m_i$ at a point in time $t_\xi$.
@@ -670,17 +467,17 @@ If the step size is chosen too large, the method will break down due to the
 insufficient stability properties of the explicit Euler integration scheme.
 
 Instead, [...implicit Euler/Radau...] [see above]
-*** QUES How to discretize the time axis in a logarithmic fashion?
+** How to discretize the time axis in a logarithmic fashion?
 
 As the temporal domain spans over multiple orders of magnitude for
 the processes involved in planet formation, it makes sense to discretize
 the time axis in a logarithmic fashion. [write this differently?]
 
 [...]
-*** QUES How to integrate the Smoluchovski equation using implicit schemes?
+** How to integrate the Smoluchovski equation using implicit schemes?
 \newpage
 * Construction of the Kernel for Simple Hit-and-Stick Coagulation
-** WAIT Introduction, Overview, & Goals for this Section
+** Introduction, Overview, & Goals for this Section
 - Here, we only take a look at the simple case of...
   + ...simple /linear/ mass axis discretization.
   + ...simple /Dirac-delta/ initialization.
@@ -696,8 +493,7 @@ Assuming simple hit-and-stick coagulation, the kernel can be written as
 Here, the coefficient $R(m_1,m_2)$ labels the collision-and-merging rate.
 
 \newpage
-** WAIT Definition of the Kernel for simple Stick-and-Hit Coagulation
-*** QUES How to implement stick-and-hit coagulation on a linear mass axis?
+** Definition of the Kernel for simple Stick-and-Hit Coagulation
 
 Let us first turn our attention to the simple case of stick-and-hit coagulation:
 Here, two particles with masses $m_1$ and $m_2$ collide, and subsequently merge
@@ -734,20 +530,14 @@ Here, $\delta_D$ labels the Dirac delta function.
 [...]
 
 \newpage
-** WAIT Numerical Integration with the Explicit Euler Scheme
-*** QUES Why does the mass error increase over time? -> "Mass Outflow"
-\newpage
-*** Hit-and-Stick Collision on Linear Mass Grid
-*** Hit-and-Stick Collision on Logarithmic Mass Grid
+** Numerical Integration with the Explicit Euler Scheme
 \newpage
 * Implementation of a Logarithmic Mass Axis Representation
-** WAIT Introduction, Overview, & Goals for this Section
-** WAIT Reasons for Making Use of a Logarithmic Representation
-** WAIT Challenges Associated with a Logarithmic Representation
-** WAIT Definition of the Logarithmic Mass Axis
-*** QUES How to discretize the mass axis in a logarithmic fashion?
-\newpage
-** WAIT Implementation of the Kovetz-Olund algortihm
+** Introduction, Overview, & Goals for this Section
+** Reasons for Making Use of a Logarithmic Representation
+** Challenges Associated with a Logarithmic Representation
+** Definition of the Logarithmic Mass Axis
+** Implementation of the Kovetz-Olund algorithm
 *** Reasons for the Necessity of the Kovetz-Olund Algorithm
 Even in a highly simplified scenario, where only hit-and-stick coagulation
 is included, the definition of the kernel $K_{kij}$ is not at all trivial.
@@ -828,8 +618,8 @@ This is the algorithm of [Kovetz & Olund (1969)], and it was also used in subseq
 papers like [Brauer et al. (2008)] and [Birnstiel et al. (2010)].
 # This discretization of the kernel is in detailed balance: For every two particles merging, these two particles are removed from the distribution, and precisely one par- ticle, with the proper mass, is inserted into the distribution. This detailed balance is not just guaranteed for the analytic continuous equation, but also for its numerical dis- cretization. This is important, because even the slightest deviation from this balance can cause large errors in the long-term.
 \newpage
-** WAIT Implementation of Near-Zero-Cancellation Handling for Coagulation
-*** QUES What is Near-Zero-Cancellation and where can it occur in general?
+** Implementation of Near-Zero-Cancellation Handling for Coagulation
+*** What is Near-Zero-Cancellation and where can it occur in general?
 When using floating-point numbers following the representation defined
 by the IEEE-754 standard, it can occur that
 \begin{align*}
@@ -844,7 +634,7 @@ Typically, this happens when
 Here, $\varepsilon_m$ labels the /machine precision/.
 
 [Add: How big is $\varepsilon_m$ for an f32, how big for an f64?]
-*** QUES Where can Near-Zero-Cancellation occur in our model?
+*** Where can Near-Zero-Cancellation occur in our model?
 Let $i$ and $j$ once again be the indices used to label two colliding
 particles. Additionally, assume now that particle $i$ is /much smaller/ than
 particle $j$.
@@ -895,13 +685,13 @@ analytically, and write:
 [Elaborate on this, see "Dust Evolution with Binning Methods"]
 \newpage
 * Inclusion of Fragmentation Processes into the Kernel
-** WAIT "First/Simple/Naive Attempt"
-*** QUES How to implement naive fragmentation?
+** "First/Simple/Naive Attempt"
+*** How to implement naive fragmentation?
 - "Pulverization"
 \newpage
-** WAIT The MRN Distribution
+** The MRN Distribution
 - introduced by Mathis-Rumpl-Nordsieck, 1977
-*** QUES How to implement MRN distribution (for initialization)?
+*** How to implement MRN distribution (for initialization)?
 
 Particle mass distribution function is defined by the condition:
 \begin{align*}
@@ -944,7 +734,7 @@ Now we only need to choose values for $m_\text{min}$ and $m_\text{max}$.
   approximating $0.5\ \mum$. [see 2004 Dullemond & Dominik]
                 ^ max. in interstellar medium (use for m_min?)
 
-*** QUES How to implement MRN distribution for fragmentation?
+*** How to implement MRN distribution for fragmentation?
 
 Let $m_i$ and $m_j$ be the masses of two particles that
 are involved in a collision leading to fragmentation.
@@ -972,20 +762,21 @@ _Answer_:
 - It doesn't /really/ matter that much anyhow.
 - One could specify the method in `config.toml`, or just use one of the methods.
 
-*** QUES Test integration speed with MRN distribution enabled. Is there a slowdown?
-** WAIT "Implementation of Near-Zero-Cancellation Handling for Fragmentation" (?)
+*** Test integration speed with MRN distribution enabled. Is there a slowdown?
+** "Implementation of Near-Zero-Cancellation Handling for Fragmentation" (?)
 \newpage
-* Definition of a the Dust Particle Reaction Rates
-** WAIT Definition of the Dust Particle Reaction Rates
+* Definition of the Dust Particle Reaction Rates
+** Definition of the Dust Particle Reaction Rates
 \newpage
-** WAIT Definition of the Dust Particle Collision Rates
-*** QUES How to define the particle collision rate?
+** Definition of the Dust Particle Collision Rates
 
 The collision rate for a pair of masses $m_1$ and $m_2$ can be written as
 
 \begin{align*}
   C(m_1,m_2,\Delta v)=\sigma(m_1,m_2)\cdot\langle|\vec v_1-\vec v_2\rangle
 \end{align*}
+- ^ TODO: Is there not a "number density" term missing here?
+    Otherwise, the unit would be `m^3 / s`.
 
 Here, $\sigma(m_1,m_2)$ labels the cross section for a collision event. The
 relative velocity between such two particles is given by the difference $\vec v_1-\vec v_2$,
@@ -1002,8 +793,7 @@ In our notation:
 \end{align*}
 
 \newpage
-** WAIT Definition of the Collision Cross Section
-*** QUES How to implement realistic collision cross sections?
+** Definition of the Collision Cross Section
 
 The cross section for a collision of two particles $i$ and $j$
 with radii $a_i$ and $a_j$ can be written as
@@ -1018,11 +808,10 @@ from equation [Summarize: Assumptions needed for the (naive/simple) particle mas
 [Add plot here]
 
 \newpage
-** WAIT Definition of the Relative Particle Velocity
-*** QUES How to implement realistic relative velocities between dust particles?
+** Definition of the Relative Particle Velocity
 \newpage
 * Calculation of the Relative Dust Particle Velocities
-** WAIT Definition of the Relative Velocity due to Radial Drift
+** Definition of the Relative Velocity due to Radial Drift
 \begin{align*}
   \Delta u_\text{RD}=\big|u_r(m_1)-u_r(m_2)\big|
 \end{align*}
@@ -1044,7 +833,7 @@ particle maximum drift velocity:
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/22/dv_RD.pdf]]
 \newpage
-** WAIT Definition of the Relative Velocity due to Differential Settling
+** Definition of the Relative Velocity due to Differential Settling
 \begin{align*}
   \Delta u_\text{DS}=\big|u_i-u_j\big|
 \end{align*}
@@ -1059,7 +848,7 @@ particle maximum drift velocity:
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/22/dv_DS.pdf]]
 \newpage
-** WAIT Definition of the Relative Velocity due to Brownian Motion
+** Definition of the Relative Velocity due to Brownian Motion
 \begin{align*}
   \Delta u^\text{BR}_{ij}
      &=\sqrt{\frac{8k_BT}{\pi}\cdot\frac{m_i+m_j}{\ m_i\cdot m_j}}\\
@@ -1068,11 +857,11 @@ particle maximum drift velocity:
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/22/dv_BR.pdf]]
 \newpage
-** WAIT Definition of the Relative Velocity due to Turbulence
+** Definition of the Relative Velocity due to Turbulence
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/22/dv_TU.pdf]]
 \newpage
-** WAIT Definition of the Azimuthal Relative Velocity
+** Definition of the Azimuthal Relative Velocity
 \begin{align*}
   \Delta u_{ij}
   =\left|u_n\cdot\left(
@@ -1082,7 +871,7 @@ particle maximum drift velocity:
 #+ATTR_LATEX: :width \textwidth
 [[../../msc-thesis.py/figures/22/dv_AZ.pdf]]
 \newpage
-** WAIT Total Relative Velocity
+** Total Relative Velocity
 \begin{align*}
   \Delta u_{ij}=\Delta u_\text{BR}+\Delta u_\text{RD}+\Delta u_\text{AZ}+\Delta u_\text{TU}+\Delta u_\text{DS}
 \end{align*}
