@@ -856,18 +856,8 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{
-        ../../msc-thesis.py/figures/13/dv_RD.pdf
-    }
-    \caption{
-        CAPTION ... \\
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum.
-    }
+    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_RD.pdf}
+    \caption{CAPTION ...}
 \end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Differential Settling
@@ -880,23 +870,12 @@ particle maximum drift velocity:
 \begin{align*}
   \text{St}=\Omega_K\cdot t_s
 \end{align*}
-\begin{align*}
-\end{align*}
+
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{
-        ../../msc-thesis.py/figures/13/dv_DS.pdf
-    }
-    \caption{
-        CAPTION ... \\
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum.
-    }
+    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_DS.pdf}
+    \caption{CAPTION ...}
 \end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Brownian Motion
@@ -905,39 +884,20 @@ particle maximum drift velocity:
      &=\sqrt{\frac{8k_BT}{\pi}\cdot\frac{m_i+m_j}{\ m_i\cdot m_j}}\\
      &=\sqrt{\frac{8}{\pi\beta\mu_{ij}}}
 \end{align*}
+
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{
-        ../../msc-thesis.py/figures/13/dv_BR.pdf
-    }
-    \caption{
-        CAPTION ... \\
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum.
-    }
+    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_BR.pdf}
+    \caption{CAPTION ...}
 \end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Turbulence
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{
-        ../../msc-thesis.py/figures/13/dv_TU.pdf
-    }
-    \caption{
-        CAPTION ... \\
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum.
-    }
+    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_TU.pdf}
+    \caption{CAPTION ...}
 \end{figure}
 \newpage
 ** Definition of the Azimuthal Relative Velocity
@@ -947,22 +907,11 @@ particle maximum drift velocity:
     \frac{1}{1+\text{St}_i^2}-\frac{1}{1+\text{St}_j^2}
   \right)\right|
 \end{align*}
-
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{
-        ../../msc-thesis.py/figures/13/dv_AZ.pdf
-    }
-    \caption{
-        CAPTION ... \\
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum.
-    }
+    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_AZ.pdf}
+    \caption{CAPTION ...}
 \end{figure}
 \newpage
 ** Total Relative Velocity
@@ -972,22 +921,11 @@ particle maximum drift velocity:
 \begin{align*}
   \Delta u_{ij}=\sqrt{\Delta u_\text{BR}^2+\Delta u_\text{RD}^2+\Delta u_\text{AZ}^2+\Delta u_\text{TU}^2+\Delta u_\text{DS}^2}
 \end{align*}
-
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{
-        ../../msc-thesis.py/figures/13/dv_tot.pdf
-    }
-    \caption{
-        CAPTION ... \\
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-        culpa qui officia deserunt mollit anim id est laborum.
-    }
+    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_tot.pdf}
+    \caption{CAPTION ...}
 \end{figure}
 \newpage
 * Implemention of Stochastic Kernel Sampling
