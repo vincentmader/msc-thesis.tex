@@ -1000,7 +1000,8 @@ particle maximum drift velocity:
 ** Glossary
 a \cite{mathis_rumpl_nordsieck_1977}
 b \cite{dullemond_dominik_2004}
-c \cite{brauer_dullemond_henning_2008}
+g \cite{ormel_cuzzi_2007}
+c \cite{brauer_dullemond_henning_2007}
 d \cite{birnstiel_dullemond_brauer_2010}
 e \cite{kovetz_olund_1969}
 f \cite{smoluchowski_1916}
