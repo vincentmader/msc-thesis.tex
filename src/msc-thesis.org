@@ -861,12 +861,15 @@ particle maximum drift velocity:
 \end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Differential Settling
+
 \begin{align*}
   \Delta u_\text{DS}=\big|u_i-u_j\big|
 \end{align*}
+
 \begin{align*}
   u_i=ts\cdot\Omega_K^2\cdot z
 \end{align*}
+
 \begin{align*}
   \text{St}=\Omega_K\cdot t_s
 \end{align*}
@@ -879,6 +882,7 @@ particle maximum drift velocity:
 \end{figure}
 \newpage
 ** Definition of the Relative Velocity due to Brownian Motion
+
 \begin{align*}
   \Delta u^\text{BR}_{ij}
      &=\sqrt{\frac{8k_BT}{\pi}\cdot\frac{m_i+m_j}{\ m_i\cdot m_j}}\\
@@ -901,12 +905,14 @@ particle maximum drift velocity:
 \end{figure}
 \newpage
 ** Definition of the Azimuthal Relative Velocity
+
 \begin{align*}
   \Delta u_{ij}
   =\left|u_n\cdot\left(
     \frac{1}{1+\text{St}_i^2}-\frac{1}{1+\text{St}_j^2}
   \right)\right|
 \end{align*}
+
 \newpage
 \begin{figure}[h!]
     \centering
@@ -943,6 +949,7 @@ c \cite{brauer_dullemond_henning_2007}
 d \cite{birnstiel_dullemond_brauer_2010}
 e \cite{kovetz_olund_1969}
 f \cite{smoluchowski_1916}
+g \cite{stammler_birnstiel_2022}
 
 \newpage
 * +References+
