@@ -1,5 +1,5 @@
 #+setupfile: ./tex-setup.org
-#+startup: latexpreview show2levels
+#+startup: show2levels
 #+author: Vincent C. Mader
 #+title: Computational Cost Optimization via Stochastic Kernel Sampling for the Numerical Integration of the Smoluchovski Coagulation Equation
 \newpage
@@ -241,36 +241,28 @@ though, it is given by
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
         }
-        \subcaption{
-            Calculation of mass values from bin indices.
-        }
+        \subcaption{}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
         }
-        \subcaption{
-            Calculation of bin indices from mass values.
-        }
+        \subcaption{}
     \end{minipage}
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
         }
-        \subcaption{
-            Roundtrip transformation: Bin index $\to$ mass value $\to$ bin index.
-        }
+        \subcaption{}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
         }
-        \subcaption{
-            Roundtrip transformation: Mass value $\to$ bin index $\to$ mass value.
-        }
+        \subcaption{}
     \end{minipage}
     \caption{
         Transformation between bin indices and mass values on a
@@ -316,36 +308,28 @@ for $i$. This leads to the following expression:
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-0.pdf
         }
-        \subcaption{
-            Calculation of mass values from bin indices.
-        }
+        \subcaption{}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-1.pdf
         }
-        \subcaption{
-            Calculation of bin indices from mass values.
-        }
+        \subcaption{}
     \end{minipage}
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-2.pdf
         }
-        \subcaption{
-            Roundtrip transformation: Bin index $\to$ mass value $\to$ bin index.
-        }
+        \subcaption{}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{
             ../../msc-thesis.py/figures/11/discrete-mass-axis_lin-scale-3.pdf
         }
-        \subcaption{
-            Roundtrip transformation: Mass value $\to$ bin index $\to$ mass value.
-        }
+        \subcaption{}
     \end{minipage}
     \caption{
         Transformation between bin indices and mass values on a
@@ -856,7 +840,7 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_RD.pdf}
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/13/dv_RD.pdf}
     \caption{CAPTION ...}
 \end{figure}
 \newpage
@@ -877,7 +861,7 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_DS.pdf}
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/13/dv_DS.pdf}
     \caption{CAPTION ...}
 \end{figure}
 \newpage
@@ -892,7 +876,7 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_BR.pdf}
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/13/dv_BR.pdf}
     \caption{CAPTION ...}
 \end{figure}
 \newpage
@@ -900,7 +884,7 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_TU.pdf}
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/13/dv_TU.pdf}
     \caption{CAPTION ...}
 \end{figure}
 \newpage
@@ -916,7 +900,7 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_AZ.pdf}
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/13/dv_AZ.pdf}
     \caption{CAPTION ...}
 \end{figure}
 \newpage
