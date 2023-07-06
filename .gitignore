@@ -5,3 +5,4 @@
 /src/*.bbl
 /src/.auctex-auto
 /src/tex-headers
+._*
