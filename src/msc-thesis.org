@@ -31,7 +31,132 @@ _What is the topic of this thesis?_
   is the big goal of this thesis.
 \newpage
 * Introduction
-* Definition of a Simplified Dust Coagulation Model
+\newpage
+* Definition of a Disk Model
+** +Introduction/General Idea+
+** Properties of the Star at the Disk Center
+- age
+- mass
+- luminosity
+- Kepler velocity
+** PPD Structure
+*** Introduction
+What do we need to define?
+- Disk mass
+  + Default: $$M_\text{disk}=q_{m,\text{disk}}\cdot M_\text{star}$$
+- Ratio of disk mass to stellar mass
+  + Default: $$q_{m,\text{disk-to-star}}=0.01$$
+- Ratio of dust to gas
+  + Default: $$q_{m,\text{dust-to-gas}}=0.01$$
+- Flaring Angle of Disk
+  + Default: $$\alpha_\text{fl}= 0.05\ \rad$$
+*** Disk Scale Height
+\begin{align*}
+  H_p
+    &=\frac{c_s}{\Omega_K}
+\end{align*}
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/disk_scale_height.pdf]]
+\newpage
+*** Kepler Frequency
+Kepler velocity:
+\begin{align*}
+  v_K
+    &=\sqrt{\frac{GM_*}{r}}
+\end{align*}
+Kepler frequency:
+\begin{align*}
+  \Omega_K
+    &=\sqrt{\frac{GM_*}{r^3}}
+\end{align*}
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/kepler_frequency.pdf]]
+\newpage
+** Gas Density
+*** Gas Surface Density
+How is it defined?
+\begin{align*}
+  \Sigma_g=\int_{-\infty}^\infty\rho_g(z)\ \dd z
+\end{align*}
+How can it be written as a function of the distance to the star?
+Ansatz: Use a power law, such that
+\begin{align*}
+  \Sigma_g\sim\frac{1}{r^k}
+\end{align*}
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/gas_surface_density.pdf]]
+\newpage
+*** Gas Volume Density
+\begin{align*}
+  \rho_g
+    &=\frac{1}{\sqrt{2\pi}}\frac{\Sigma_g}{H_p}
+\end{align*}
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/gas_volume_density.pdf]]
+\newpage
+*** Gas Volume Number Density
+\begin{align*}
+  n_g
+    &=\frac{\rho_g}{2.3\cdot m_\text{p}}
+\end{align*}
+** Gas Pressure
+*** Midplane Gas Pressure
+\begin{align*}
+  P_g
+    &=\rho_g\cdot c_s^2
+\end{align*}
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/gas_pressure.pdf]]
+\newpage
+*** Gas Pressure Gradient
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/pressure_gradient.pdf]]
+\newpage
+** Midplane Temperature
+*** Midplane Temperature
+\begin{align*}
+  \sigma_\text{SB}\cdot T^4
+    &=\frac{\alpha_\text{fl}}{2}\cdot L_\text{star}
+\end{align*}
+#+ATTR_LATEX: :width \textwidth
+[[../../msc-thesis.py/figures/02/midplane_temperature.pdf]]
+\newpage
+**** Derivation
+Flux at distance $r$ from star:
+\begin{align*}
+  B(r)
+    &=\frac{\alpha_\text{fl}}{2}\frac{L_\text{star}}{4\pi r^2}
+\end{align*}
+
+Now use Stefan-Boltzmann law:
+\begin{align*}
+  B(T)=\sigma_\text{SB}\cdot T^4
+\end{align*}
+
+Midplane temperature at distance $r$ from star:
+\begin{align*}
+  T_\text{mid}
+    &=\bigg[\frac{B(r)}{\sigma_{SB}}\bigg]^{1/4}\\
+    &=\bigg[\frac{\alpha_\text{fl}}{2}\cdot\frac{L_\text{star}}{4\pi r^2\cdot\sigma_\text{SB}}\bigg]^{1/4}
+\end{align*}
+
+Rearrange for $T_\text{mid}$ to arrive at the above definition.
+\newpage
+*** Mean Thermal Velocity of Gas Particles
+\begin{align*}
+  # u_\text{th}
+  \bar v
+    &=\sqrt{\frac{8}{\pi}}\cdot c_s
+\end{align*}
+\newpage
+
+** Sound Speed
+- sound speed
+* Definition of a Model for Dust Particles
+** Dust Particle Shape
+** Dust Particle Stopping Time
+** Reynolds & Stokes Number
+* Definition of a Model for Dust Coagulation
 ** Prerequisites and Assumptions
 Consider a distribution of dust particles with different masses $m$. For simplicity,
 all of them are assumed to share the same material density $\rho_s$, as well as all other
@@ -371,7 +496,7 @@ With $i,j\in\mathbb N$ "being indices":
     K_{kij}\cdot n_i\cdot n_j
 \end{align*}
 
-Equivalent formulation: [which one to use? I like the lower one <3]
+Equivalent formulation: [which one to use? I like the lower one]
 
 \begin{align*}
   \deriv{n_k}{t}
@@ -774,6 +899,26 @@ _Answer_:
 * Definition of the Dust Particle Reaction Rates
 ** Definition of the Dust Particle Reaction Rates
 \newpage
+** Definition of the Collision Cross Section
+
+The cross section for a collision of two particles $i$ and $j$
+with radii $a_i$ and $a_j$ can be written as
+
+\begin{align*}
+  \sigma_{ij}=\pi\cdot(a_i+a_j)^2
+\end{align*}
+
+Here, the radii can be computed from the corresponding masses $m_i$ and $m_j$
+from equation [Summarize: Assumptions needed for the (naive/simple) particle mass distribution.].
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/21/collision_cross_section.pdf}
+    \caption{CAPTION ...}
+\end{figure}
+\newpage
+** Definition of the Relative Particle Velocity
+\newpage
 ** Definition of the Dust Particle Collision Rates
 
 The collision rate for a pair of masses $m_1$ and $m_2$ can be written as
@@ -798,23 +943,11 @@ In our notation:
   C_{ij}=\sigma_{ij}\cdot\langle\Delta v_{ij}\rangle
 \end{align*}
 
-\newpage
-** Definition of the Collision Cross Section
-
-The cross section for a collision of two particles $i$ and $j$
-with radii $a_i$ and $a_j$ can be written as
-
-\begin{align*}
-  \sigma_{ij}=\pi\cdot(a_i+a_j)^2
-\end{align*}
-
-Here, the radii can be computed from the corresponding masses $m_i$ and $m_j$
-from equation [Summarize: Assumptions needed for the (naive/simple) particle mass distribution.].
-
-[Add plot here]
-
-\newpage
-** Definition of the Relative Particle Velocity
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/23/collision_rate.pdf}
+    \caption{CAPTION ...}
+\end{figure}
 \newpage
 * Calculation of the Relative Dust Particle Velocities
 ** Definition of the Relative Velocity due to Radial Drift
@@ -914,7 +1047,7 @@ particle maximum drift velocity:
 \newpage
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{./../msc-thesis.py/figures/13/dv_tot.pdf}
+    \includegraphics[width=\textwidth]{../../msc-thesis.py/figures/13/dv_tot.pdf}
     \caption{CAPTION ...}
 \end{figure}
 \newpage
